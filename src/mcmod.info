@@ -1,0 +1,16 @@
+[
+{
+  "modid": "myrmecology",
+  "name": "Myrmecology",
+  "description": "Capture, breed and enslave ants!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/VivaDaylight3/Myrmecology2",
+  "updateUrl": "https://github.com/VivaDaylight3/Myrmecology2/releases",
+  "authorList": ["VivaDaylight3"],
+  "credits": "Forge, FML and MCP along with the community!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
