@@ -1,0 +1,14 @@
+tile.myrmecology:breedingChamber.name=Breeding Chamber
+tile.myrmecology:formicariumGel.name=Formicarium Gel
+tile.myrmecology:incubator.name=Incubator
+
+myrmecology:ant=Ant
+myrmecology:antType.Queen=Queen
+myrmecology:antType.Drone=Drone
+myrmecology:antType.Worker=Worker
+myrmecology:antType.Larva=Larva
+
+myrmecology:antSpecies.Forest=Black
+myrmecology:antSpecies.Desert=Desert
+
+itemGroup.tabMyrmecology=Myrmecology
