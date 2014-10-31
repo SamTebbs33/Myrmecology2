@@ -4,6 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -70,13 +71,13 @@ public class GuiIncubator extends GuiContainer {
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-		/*
-		 * if (this.tile.isBurning()) { int i1 =
-		 * this.tile.getBurnTimeRemainingScaled(13);
-		 * this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1,
-		 * 14, i1 + 1); i1 = this.tile.getCookProgressScaled(24);
-		 * this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16); }
-		 */
+		float time = this.tile.progress;
+		
+		if(time > 0){
+			int progress = this.tile.getProgressScaled(24);
+			this.drawTexturedModalRect(k+31, l+16, 176, 0, (progress + 1), 16);
+		}
+		 
 	}
 
 }

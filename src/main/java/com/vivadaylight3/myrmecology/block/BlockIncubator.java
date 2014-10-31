@@ -17,11 +17,7 @@ public class BlockIncubator extends BlockMyrmecology {
 		suffixLeft = "_Side";
 		suffixRight = "_Side";
 		suffixBack = "_Side";
-	}
-
-	@Override
-	public boolean hasTileEntity() {
-		return true;
+		hasTileEntity = true;
 	}
 
 	@Override

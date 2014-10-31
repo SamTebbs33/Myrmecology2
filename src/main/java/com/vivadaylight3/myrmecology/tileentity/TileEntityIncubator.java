@@ -9,6 +9,10 @@ import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class TileEntityIncubator extends TileEntityMyrmecology {
 
 	public int productType = 1, progress = 0, targetTime = 0, meta = -1;
@@ -24,6 +28,12 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 		return new ItemStack(ModItems.itemAnt, 1, Ants.species.indexOf(Ants
 				.getSpecies(larva)) * Ants.typeNames.length + productType);
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public int getProgressScaled(int scale)
+    {
+        return this.progress * scale / targetTime;
+    }
 
 	private void reset() {
 		meta = -1;
@@ -40,7 +50,6 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 					if (inventoryCanHold(getProduct(larva))) {
 						progress++;
 						if (progress >= targetTime) {
-							System.out.println("Done");
 							addItemStackToInventory(getProduct(larva));
 							decrStackSize(0, 1);
 							reset();
@@ -57,6 +66,11 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 		} else {
 			reset();
 		}
+		//if(flag) updateClientGUI();
+	}
+
+	private void updateClientGUI() {
+		this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
 	@Override

@@ -1,10 +1,15 @@
 package com.vivadaylight3.myrmecology.block;
 
+import java.util.Random;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -12,6 +17,7 @@ import net.minecraft.world.World;
 
 import com.vivadaylight3.myrmecology.Myrmecology;
 import com.vivadaylight3.myrmecology.reference.Reference;
+import com.vivadaylight3.myrmecology.tileentity.TileEntityMyrmecology;
 
 public class BlockMyrmecology extends BlockContainer {
 
@@ -21,6 +27,7 @@ public class BlockMyrmecology extends BlockContainer {
 			suffixFront = "_Front", suffixBack = "_Back",
 			suffixRight = "_Right", suffixLeft = "_Left";
 	public boolean sidedTextures = false;
+	protected boolean hasTileEntity = false;
 
 	public enum EnumBlockSide {
 		BOTTOM, TOP, BACK, FRONT, LEFT, RIGHT
@@ -139,6 +146,61 @@ public class BlockMyrmecology extends BlockContainer {
 			return EnumBlockSide.BACK;
 
 	}
+
+	@Override
+	public void breakBlock(World par1World, int par2, int par3, int par4,
+			Block par5, int par6) {
+		if (this.hasTileEntity) {
+			TileEntityMyrmecology tileEntity = (TileEntityMyrmecology) par1World
+					.getTileEntity(par2, par3, par4);
+
+			if (tileEntity != null) {
+				Random random = new Random();
+				for (int j1 = 0; j1 < tileEntity.getSizeInventory(); ++j1) {
+					ItemStack itemstack = tileEntity.getStackInSlot(j1);
+
+					if (itemstack != null) {
+						float f = random.nextFloat() * 0.8F + 0.1F;
+						float f1 = random.nextFloat() * 0.8F + 0.1F;
+						EntityItem entityitem;
+
+						for (float f2 = random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; par1World
+								.spawnEntityInWorld(entityitem)) {
+							int k1 = random.nextInt(21) + 10;
+
+							if (k1 > itemstack.stackSize) {
+								k1 = itemstack.stackSize;
+							}
+
+							itemstack.stackSize -= k1;
+							entityitem = new EntityItem(par1World, par2 + f,
+									par3 + f1, par4 + f2, itemstack);
+							float f3 = 0.05F;
+							entityitem.motionX = (float) random.nextGaussian()
+									* f3;
+							entityitem.motionY = (float) random.nextGaussian()
+									* f3 + 0.2F;
+							entityitem.motionZ = (float) random.nextGaussian()
+									* f3;
+
+							if (itemstack.hasTagCompound()) {
+								entityitem.getEntityItem().setTagCompound(
+										(NBTTagCompound) itemstack
+												.getTagCompound().copy());
+							}
+						}
+					}
+				}
+			}
+		}
+
+		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+	}
+	
+	public boolean hasTileEntity(int metadata)
+    {
+        return hasTileEntity;
+    }
 
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		// TODO Auto-generated method stub
