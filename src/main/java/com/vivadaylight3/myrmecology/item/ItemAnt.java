@@ -20,11 +20,13 @@ public class ItemAnt extends ItemMyrmecology {
 
 	public static IIcon[][] icons = new IIcon[2][Ants.typeNames.length];
 	public static final String[] iconSuffixes = { "", "_Inside" };
+	public static final int maxStackSize2 = 64;
 	public String[] names = new String[Ants.species.size()
 			* Ants.typeNames.length];
 
 	public ItemAnt() {
 		super();
+		setMaxStackSize(maxStackSize2);
 		setHasSubtypes(true);
 		setMaxDamage(0);
 		int c = 0;
@@ -47,6 +49,7 @@ public class ItemAnt extends ItemMyrmecology {
 		}
 	}
 
+	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return names[stack.getItemDamage()];
 	}

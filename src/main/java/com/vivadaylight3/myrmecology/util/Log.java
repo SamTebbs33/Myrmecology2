@@ -11,7 +11,7 @@ public class Log {
 	public static boolean debug = true;
 
 	public static void log(org.apache.logging.log4j.Level level, Object obj) {
-		FMLLog.log(Reference.MOD_NAME, level, "", obj);
+		FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
 	}
 
 	public static void debug(Object obj) {

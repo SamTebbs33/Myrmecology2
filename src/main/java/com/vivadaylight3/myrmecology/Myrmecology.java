@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
+import com.vivadaylight3.myrmecology.init.ModNet;
+import com.vivadaylight3.myrmecology.init.ModTileEntities;
 import com.vivadaylight3.myrmecology.proxy.IProxy;
 import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.util.Log;
@@ -41,6 +43,8 @@ public class Myrmecology {
 		tab = makeTab(Reference.MOD_ID, Items.stick);
 		ModBlocks.init();
 		ModItems.init();
+		ModTileEntities.init();
+		ModNet.init();
 	}
 
 	/**

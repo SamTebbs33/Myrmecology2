@@ -1,9 +1,5 @@
 package com.vivadaylight3.myrmecology.init;
 
-import net.minecraft.world.biome.BiomeGenBase;
-
-import com.vivadaylight3.myrmecology.ant.AntSpecies;
-import com.vivadaylight3.myrmecology.ant.Ants;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.item.ItemMyrmecology;
 
@@ -11,8 +7,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
+	public static ItemMyrmecology itemAnt = new ItemAnt();
+
 	public static void init() {
-		addItem(new ItemAnt());
+		addItem(itemAnt);
 	}
 
 	public static void addItem(ItemMyrmecology item) {

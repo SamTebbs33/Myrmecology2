@@ -10,8 +10,8 @@ import com.vivadaylight3.myrmecology.util.Time;
 public class AntSpecies {
 
 	public int[] colours;
-	public int matureTicks = Time.ticks(10), breedTicks = Time.ticks(1),
-			fertility = 2, fertilityPlus = 1, fertilityMinus = 0,
+	public int matureTicks = Time.ticksFromSeconds(10), breedTicks = Time
+			.ticks(1), fertility = 2, fertilityPlus = 1, fertilityMinus = 0,
 			hillRarity = 1;
 	public String speciesName = "Default", binomialName = "Antus Defaultus";
 	public boolean hillAnt = true, winged = false, nocturnal = false,

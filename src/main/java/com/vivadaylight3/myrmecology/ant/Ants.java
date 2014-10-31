@@ -17,7 +17,7 @@ public class Ants {
 					"Antus Desertus", BiomeGenBase.desert);
 
 	public enum AntType {
-		LARVA(0), DRONE(1), WOKRER(2), QUEEN(3);
+		LARVA(0), DRONE(1), WORKER(2), QUEEN(3);
 		public int val;
 
 		AntType(int val) {

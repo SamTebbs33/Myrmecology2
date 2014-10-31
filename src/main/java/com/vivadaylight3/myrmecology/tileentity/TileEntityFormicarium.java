@@ -1,6 +1,5 @@
 package com.vivadaylight3.myrmecology.tileentity;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityFormicarium extends TileEntity {

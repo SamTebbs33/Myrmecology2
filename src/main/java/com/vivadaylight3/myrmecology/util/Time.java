@@ -6,4 +6,8 @@ public class Time {
 		return minutes * 60 * 20;
 	}
 
+	public static int ticksFromSeconds(int seconds) {
+		return seconds * 20;
+	}
+
 }

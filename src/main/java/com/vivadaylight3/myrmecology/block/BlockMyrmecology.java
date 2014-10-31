@@ -1,19 +1,19 @@
 package com.vivadaylight3.myrmecology.block;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.vivadaylight3.myrmecology.Myrmecology;
 import com.vivadaylight3.myrmecology.reference.Reference;
-import com.vivadaylight3.myrmecology.util.Log;
 
-public class BlockMyrmecology extends Block {
+public class BlockMyrmecology extends BlockContainer {
 
 	public String name;
 	public IIcon iconTop, iconBottom, iconFront, iconBack, iconRight, iconLeft;
@@ -21,6 +21,10 @@ public class BlockMyrmecology extends Block {
 			suffixFront = "_Front", suffixBack = "_Back",
 			suffixRight = "_Right", suffixLeft = "_Left";
 	public boolean sidedTextures = false;
+
+	public enum EnumBlockSide {
+		BOTTOM, TOP, BACK, FRONT, LEFT, RIGHT
+	}
 
 	public BlockMyrmecology(Material mat) {
 		super(mat);
@@ -64,7 +68,6 @@ public class BlockMyrmecology extends Block {
 			int angle = MathHelper
 					.floor_double((entity.rotationYaw * 4.0f / 360.0f) + 0.5d) & 3;
 			// angle = angle < 2 ? angle + 2 : angle - 2;
-			System.out.println(angle);
 			world.setBlockMetadataWithNotify(x, y, z, angle, 2);
 		}
 	}
@@ -105,16 +108,6 @@ public class BlockMyrmecology extends Block {
 			this.blockIcon = reg.registerIcon(uName);
 	}
 
-	/**
-	 * Returns the side name of the block depending on its metadata and side
-	 * 
-	 * @author VivaDaylight3
-	 * @param side
-	 * @param metadata
-	 * @param basemeta
-	 * @return String 'top', 'bottom', 'front', 'input', 'output' or 'back'
-	 */
-
 	public static EnumBlockSide getBlockSide(int side, int metadata,
 			int basemeta) {
 
@@ -123,46 +116,33 @@ public class BlockMyrmecology extends Block {
 		int meta3 = basemeta + 2;
 		int meta4 = basemeta + 3;
 
-		if (side == 1) {
-
+		if (side == 1)
 			return EnumBlockSide.TOP;
-
-		}
-		if (side == 0) {
-
+		else if (side == 0)
 			return EnumBlockSide.BOTTOM;
-
-		} else if ((metadata == meta1 && side == 2)
+		else if ((metadata == meta1 && side == 2)
 				|| (metadata == meta2 && side == 5)
 				|| (metadata == meta3 && side == 3)
-				|| (metadata == meta4 && side == 4)) {
-
+				|| (metadata == meta4 && side == 4))
 			return EnumBlockSide.FRONT;
-
-		} else if ((metadata == meta1 && side == 4)
+		else if ((metadata == meta1 && side == 4)
 				|| (metadata == meta2 && side == 2)
 				|| (metadata == meta3 && side == 5)
-				|| (metadata == meta4 && side == 3)) {
-
+				|| (metadata == meta4 && side == 3))
 			return EnumBlockSide.LEFT;
-
-		} else if ((metadata == meta1 && side == 5)
+		else if ((metadata == meta1 && side == 5)
 				|| (metadata == meta2 && side == 3)
 				|| (metadata == meta3 && side == 4)
-				|| (metadata == meta4 && side == 2)) {
-
+				|| (metadata == meta4 && side == 2))
 			return EnumBlockSide.RIGHT;
-
-		} else {
-
+		else
 			return EnumBlockSide.BACK;
-
-		}
 
 	}
 
-}
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-enum EnumBlockSide {
-	BOTTOM, TOP, BACK, FRONT, LEFT, RIGHT
 }
