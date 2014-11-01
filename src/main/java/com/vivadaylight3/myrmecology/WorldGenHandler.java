@@ -6,7 +6,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 
-import com.vivadaylight3.myrmecology.ant.Ants;
 import com.vivadaylight3.myrmecology.block.BlockAntHill;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 
@@ -35,7 +34,7 @@ public class WorldGenHandler implements IWorldGenerator {
 		final int blockY = world.getHeightValue(blockX, blockZ);
 		final BiomeGenBase biome = world.getBiomeGenForCoords(blockX,
 			blockZ);
-		for (final BlockAntHill block : Ants.hills) {
+		for (final BlockAntHill block : BlockAntHill.hills) {
 		    if (block.generate(new Coordinate(world, blockX, blockY,
 			    blockZ), biome, rand)) {
 			break;

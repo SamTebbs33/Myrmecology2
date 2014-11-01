@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -17,7 +18,6 @@ import net.minecraft.world.World;
 
 import com.vivadaylight3.myrmecology.init.ModTabs;
 import com.vivadaylight3.myrmecology.reference.Reference;
-import com.vivadaylight3.myrmecology.tileentity.TileEntityMyrmecology;
 
 public class BlockMyrmecology extends BlockContainer {
 
@@ -29,7 +29,7 @@ public class BlockMyrmecology extends BlockContainer {
     public boolean sidedTextures = false;
     protected boolean hasTileEntity = false;
 
-    public enum EnumBlockSide {
+    public enum BlockSide {
 	BOTTOM, TOP, BACK, FRONT, LEFT, RIGHT
     }
 
@@ -80,7 +80,7 @@ public class BlockMyrmecology extends BlockContainer {
     @Override
     public IIcon getIcon(final int side, final int meta) {
 	if (sidedTextures) {
-	    final EnumBlockSide bSide = getBlockSide(side, meta, 0);
+	    final BlockSide bSide = getBlockSide(side, meta, 0);
 	    switch (bSide) {
 		case TOP:
 		    return iconTop;
@@ -114,79 +114,84 @@ public class BlockMyrmecology extends BlockContainer {
 	}
     }
 
-    public static EnumBlockSide getBlockSide(final int side,
-	    final int metadata, final int basemeta) {
+    public static BlockSide getBlockSide(final int side, final int metadata,
+	    final int basemeta) {
 
 	final int meta1 = basemeta;
 	final int meta2 = basemeta + 1;
 	final int meta3 = basemeta + 2;
 	final int meta4 = basemeta + 3;
 
-	if (side == 1) return EnumBlockSide.TOP;
-	else if (side == 0) return EnumBlockSide.BOTTOM;
+	if (side == 1) return BlockSide.TOP;
+	else if (side == 0) return BlockSide.BOTTOM;
 	else if (((metadata == meta1) && (side == 2))
 		|| ((metadata == meta2) && (side == 5))
 		|| ((metadata == meta3) && (side == 3))
-		|| ((metadata == meta4) && (side == 4))) return EnumBlockSide.FRONT;
+		|| ((metadata == meta4) && (side == 4))) return BlockSide.FRONT;
 	else if (((metadata == meta1) && (side == 4))
 		|| ((metadata == meta2) && (side == 2))
 		|| ((metadata == meta3) && (side == 5))
-		|| ((metadata == meta4) && (side == 3))) return EnumBlockSide.LEFT;
+		|| ((metadata == meta4) && (side == 3))) return BlockSide.RIGHT;
 	else if (((metadata == meta1) && (side == 5))
 		|| ((metadata == meta2) && (side == 3))
 		|| ((metadata == meta3) && (side == 4))
-		|| ((metadata == meta4) && (side == 2))) return EnumBlockSide.RIGHT;
-	else return EnumBlockSide.BACK;
+		|| ((metadata == meta4) && (side == 2))) return BlockSide.LEFT;
+	else return BlockSide.BACK;
 
     }
 
     @Override
-    public void breakBlock(final World par1World, final int par2,
-	    final int par3, final int par4, final Block par5, final int par6) {
+    public void breakBlock(final World world, final int x, final int y,
+	    final int z, final Block block, final int par6) {
 	if (hasTileEntity) {
-	    final TileEntityMyrmecology tileEntity = (TileEntityMyrmecology) par1World
-		    .getTileEntity(par2, par3, par4);
+	    final TileEntity tileEntity = world.getTileEntity(x, y, z);
 
 	    if (tileEntity != null) {
-		final Random random = new Random();
-		for (int j1 = 0; j1 < tileEntity.getSizeInventory(); ++j1) {
-		    final ItemStack itemstack = tileEntity.getStackInSlot(j1);
+		if (tileEntity instanceof IInventory) {
+		    final IInventory inv = (IInventory) tileEntity;
+		    final Random rand = new Random();
+		    for (int i1 = 0; i1 < inv.getSizeInventory(); ++i1) {
+			final ItemStack itemstack = inv.getStackInSlot(i1);
 
-		    if (itemstack != null) {
-			final float f = (random.nextFloat() * 0.8F) + 0.1F;
-			final float f1 = (random.nextFloat() * 0.8F) + 0.1F;
-			EntityItem entityitem;
+			if (itemstack != null) {
+			    final float f = (rand.nextFloat() * 0.8F) + 0.1F;
+			    final float f1 = (rand.nextFloat() * 0.8F) + 0.1F;
+			    EntityItem entityitem;
 
-			for (final float f2 = (random.nextFloat() * 0.8F) + 0.1F; itemstack.stackSize > 0; par1World
-				.spawnEntityInWorld(entityitem)) {
-			    int k1 = random.nextInt(21) + 10;
+			    for (final float f2 = (rand.nextFloat() * 0.8F) + 0.1F; itemstack.stackSize > 0; world
+				    .spawnEntityInWorld(entityitem)) {
+				int j1 = rand.nextInt(21) + 10;
 
-			    if (k1 > itemstack.stackSize) {
-				k1 = itemstack.stackSize;
-			    }
+				if (j1 > itemstack.stackSize) {
+				    j1 = itemstack.stackSize;
+				}
 
-			    itemstack.stackSize -= k1;
-			    entityitem = new EntityItem(par1World, par2 + f,
-				    par3 + f1, par4 + f2, itemstack);
-			    final float f3 = 0.05F;
-			    entityitem.motionX = (float) random.nextGaussian()
-				    * f3;
-			    entityitem.motionY = ((float) random.nextGaussian() * f3) + 0.2F;
-			    entityitem.motionZ = (float) random.nextGaussian()
-				    * f3;
+				itemstack.stackSize -= j1;
+				entityitem = new EntityItem(world, x + f, y
+					+ f1, z + f2, new ItemStack(
+					itemstack.getItem(), j1,
+					itemstack.getItemDamage()));
+				final float f3 = 0.05F;
+				entityitem.motionX = (float) rand
+					.nextGaussian() * f3;
+				entityitem.motionY = ((float) rand
+					.nextGaussian() * f3) + 0.2F;
+				entityitem.motionZ = (float) rand
+					.nextGaussian() * f3;
 
-			    if (itemstack.hasTagCompound()) {
-				entityitem.getEntityItem().setTagCompound(
-					(NBTTagCompound) itemstack
-						.getTagCompound().copy());
+				if (itemstack.hasTagCompound()) {
+				    entityitem.getEntityItem().setTagCompound(
+					    (NBTTagCompound) itemstack
+						    .getTagCompound().copy());
+				}
 			    }
 			}
 		    }
+		    world.func_147453_f(x, y, z, block);
 		}
 	    }
 	}
-
-	super.breakBlock(par1World, par2, par3, par4, par5, par6);
+	super.breakBlock(world, x, y, z, block, par6);
     }
 
     @Override

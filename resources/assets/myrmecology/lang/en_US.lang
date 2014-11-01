@@ -5,6 +5,7 @@ tile.myrmecology:incubator.name=Incubator
 
 // Items
 item.myrmecology:extractor.name=Ant Extractor
+item.myrmecology:extractor.desc=Extracts ants from ant hills
 
 // Ant types
 myrmecology:ant=Ant 

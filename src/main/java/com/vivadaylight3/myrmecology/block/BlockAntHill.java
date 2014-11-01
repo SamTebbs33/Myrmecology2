@@ -1,21 +1,28 @@
 package com.vivadaylight3.myrmecology.block;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import scala.actors.threadpool.Arrays;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.ant.Ants.AntType;
+import com.vivadaylight3.myrmecology.item.ItemExtractor;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.Maths;
 
-public class BlockAntHill extends BlockMyrmecology {
+public class BlockAntHill extends BlockMyrmecologyNonContainer {
 
     public AntSpecies species;
+    public static ArrayList<BlockAntHill> hills = new ArrayList<BlockAntHill>();
 
     public BlockAntHill(final AntSpecies species) {
 	super(Material.ground);
@@ -26,7 +33,8 @@ public class BlockAntHill extends BlockMyrmecology {
 	suffixBottom = "_Top";
 	name += species.speciesName;
 	setBlockName(name);
-	Ants.hills.add(this);
+	BlockAntHill.hills.add(this);
+	setHardness(0.5f);
     }
 
     public BiomeGenBase[] getBiomes() {
@@ -48,6 +56,37 @@ public class BlockAntHill extends BlockMyrmecology {
 	    }
 	}
 	return false;
+    }
+
+    @Override
+    public boolean canSilkHarvest(final World world, final EntityPlayer player,
+	    final int x, final int y, final int z, final int metadata) {
+
+	return false;
+
+    }
+
+    @Override
+    public boolean canHarvestBlock(final EntityPlayer player, final int meta) {
+
+	final ItemStack tool = player.getCurrentEquippedItem();
+
+	if (tool != null) {
+
+	    if (tool.getItem() instanceof ItemExtractor) return true;
+
+	}
+
+	return false;
+    }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(final World world, final int x,
+	    final int y, final int z, final int metadata, final int fortune) {
+	final ArrayList<ItemStack> res = new ArrayList<ItemStack>();
+	res.add(Ants.getItemStack(species, AntType.LARVA,
+		2 + (fortune > 0 ? new Random().nextInt(fortune) : 0)));
+	return res;
     }
 
 }

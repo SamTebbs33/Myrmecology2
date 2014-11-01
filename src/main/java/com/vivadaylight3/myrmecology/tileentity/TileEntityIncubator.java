@@ -4,7 +4,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 
+import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.block.BlockMyrmecology;
+import com.vivadaylight3.myrmecology.block.BlockMyrmecology.BlockSide;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
@@ -24,7 +27,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
     }
 
     private ItemStack getProduct(final ItemStack larva) {
-	return new ItemStack(ModItems.ant, 1, (Ants.species.indexOf(Ants
+	return new ItemStack(ModItems.ant, 1, (AntSpecies.species.indexOf(Ants
 		.getSpecies(larva)) * Ants.typeNames.length) + productType);
     }
 
@@ -64,7 +67,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 	} else {
 	    reset();
 	}
-	// if(flag) updateC lientGUI();
+	// Output inventory contents?
     }
 
     private void updateClientGUI() {
@@ -96,6 +99,33 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 	super.readFromNBT(tag);
 	productType = tag.getInteger("ProductType");
 	progress = tag.getInteger("Progress");
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(final int side) {
+	final BlockSide blockSide = BlockMyrmecology.getBlockSide(side,
+		worldObj.getBlockMetadata(xCoord, yCoord, zCoord), 0);
+	if ((blockSide == BlockSide.TOP) || (blockSide == BlockSide.LEFT)) return new int[] { 0 };
+	else {
+	    final int[] res = new int[getSizeInventory() - 1];
+	    for (int c = 1; c < getSizeInventory(); c++) {
+		res[c - 1] = c;
+	    }
+	    return res;
+	}
+    }
+
+    @Override
+    public boolean canInsertItem(final int slot, final ItemStack stack,
+	    final int side) {
+	return (slot == 0) && (stack.getItem() instanceof ItemAnt)
+		&& (Ants.getType(stack) == Ants.AntType.LARVA.val);
+    }
+
+    @Override
+    public boolean canExtractItem(final int slot, final ItemStack stack,
+	    final int side) {
+	return slot > 0;
     }
 
 }

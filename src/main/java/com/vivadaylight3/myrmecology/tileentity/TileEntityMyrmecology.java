@@ -1,7 +1,7 @@
 package com.vivadaylight3.myrmecology.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -12,7 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 
 import com.vivadaylight3.myrmecology.util.Log;
 
-public class TileEntityMyrmecology extends TileEntity implements IInventory {
+public class TileEntityMyrmecology extends TileEntity implements
+	ISidedInventory {
 
     protected ItemStack[] inventory;
     protected int maxStackSize;
@@ -247,6 +248,23 @@ public class TileEntityMyrmecology extends TileEntity implements IInventory {
 
 	return;
 
+    }
+
+    public int[] getAccessibleSlotsFromSide(final int side) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    public boolean canInsertItem(final int slot, final ItemStack stack,
+	    final int side) {
+	// TODO Auto-generated method stub
+	return false;
+    }
+
+    public boolean canExtractItem(final int slot, final ItemStack stack,
+	    final int side) {
+	// TODO Auto-generated method stub
+	return false;
     }
 
 }

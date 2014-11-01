@@ -18,6 +18,8 @@ public class BlockIncubator extends BlockMyrmecology {
 	suffixRight = "_Side";
 	suffixBack = "_Side";
 	hasTileEntity = true;
+	setHardness(3.5f);
+	this.setHarvestLevel("pickaxe", 1);
     }
 
     @Override

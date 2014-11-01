@@ -71,8 +71,7 @@ public class ContainerMyrmecology extends Container {
 
     @Override
     public boolean canInteractWith(final EntityPlayer p_75145_1_) {
-	// TODO Auto-generated method stub
-	return false;
+	return ((IInventory) tile).isUseableByPlayer(p_75145_1_);
     }
 
 }

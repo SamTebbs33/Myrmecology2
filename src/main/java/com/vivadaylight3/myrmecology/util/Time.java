@@ -2,8 +2,8 @@ package com.vivadaylight3.myrmecology.util;
 
 public class Time {
 
-    public static int ticks(final int minutes) {
-	return minutes * 60 * 20;
+    public static int ticksFromMinutes(final int minutes) {
+	return ticksFromSeconds(minutes * 60);
     }
 
     public static int ticksFromSeconds(final int seconds) {

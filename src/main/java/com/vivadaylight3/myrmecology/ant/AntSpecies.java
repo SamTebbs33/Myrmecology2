@@ -11,13 +11,14 @@ public class AntSpecies {
 
     public int[] colours;
     public int matureTicks = Time.ticksFromSeconds(10), breedTicks = Time
-	    .ticks(1), fertility = 2, fertilityPlus = 1, fertilityMinus = 0,
-	    hillRarity = 1;
+	    .ticksFromMinutes(1), fertility = 2, fertilityPlus = 1,
+	    fertilityMinus = 0, hillRarity = 1;
     public String speciesName = "Default", binomialName = "Antus Defaultus";
     public boolean isHillAnt = true, winged = false, nocturnal = false,
 	    hasEntity = false, hasBehaviour = false;
     public BiomeGenBase[] biomes;
     public ArrayList<AntBreedingRecipe> breedingRecipes = new ArrayList<AntBreedingRecipe>();
+    public static ArrayList<AntSpecies> species = new ArrayList<AntSpecies>();
 
     public AntSpecies(final int colourOutside, final int colourInside,
 	    final String speciesName, final String binomialName,
@@ -26,7 +27,7 @@ public class AntSpecies {
 	this.biomes = biomes;
 	this.speciesName = speciesName;
 	this.binomialName = binomialName;
-	Ants.species.add(this);
+	AntSpecies.species.add(this);
     }
 
     public void doBehaviour(final Coordinate coord, final int strength) {

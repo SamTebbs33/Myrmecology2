@@ -1,6 +1,9 @@
 package com.vivadaylight3.myrmecology.item;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -22,6 +25,17 @@ public class ItemMyrmecology extends Item {
 
     private String getTexturePath() {
 	return Reference.MOD_ID + ":" + name;
+    }
+
+    @Override
+    public void addInformation(final ItemStack par1ItemStack,
+	    final EntityPlayer par2EntityPlayer, final List par3List,
+	    final boolean par4) {
+	final String info = StatCollector.translateToLocal(this
+		.getUnlocalizedName() + ".desc");
+	if (!info.equals("") && !info.equals(getUnlocalizedName() + ".desc")) {
+	    par3List.add(info);
+	}
     }
 
     @Override

@@ -21,7 +21,7 @@ public class ItemAnt extends ItemMyrmecology {
     public static IIcon[][] icons = new IIcon[2][Ants.typeNames.length];
     public static final String[] iconSuffixes = { "", "_Inside" };
     public static final int maxStackSize2 = 64;
-    public String[] names = new String[Ants.species.size()
+    public String[] names = new String[AntSpecies.species.size()
 	    * Ants.typeNames.length];
 
     public ItemAnt() {
@@ -30,7 +30,7 @@ public class ItemAnt extends ItemMyrmecology {
 	setHasSubtypes(true);
 	setMaxDamage(0);
 	int c = 0;
-	for (final AntSpecies s : Ants.species) {
+	for (final AntSpecies s : AntSpecies.species) {
 	    final String localSpeciesName = StatCollector
 		    .translateToLocal(Reference.MOD_ID + ":antSpecies."
 			    + s.speciesName);
@@ -62,7 +62,7 @@ public class ItemAnt extends ItemMyrmecology {
     public void getSubItems(final Item item, final CreativeTabs tabs,
 	    final List list) {
 	int c = 0;
-	for (final AntSpecies s : Ants.species) {
+	for (final AntSpecies s : AntSpecies.species) {
 	    for (int k = 0; k < Ants.typeNames.length; k++) {
 		list.add(new ItemStack(item, 1, c));
 		c++;
