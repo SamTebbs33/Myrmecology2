@@ -4,8 +4,8 @@ import net.minecraft.block.material.Material;
 
 public class BlockFormicariumGel extends BlockMyrmecology {
 
-	public BlockFormicariumGel() {
-		super(Material.clay);
-	}
+    public BlockFormicariumGel() {
+	super(Material.clay);
+    }
 
 }

@@ -10,46 +10,47 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketIncubator implements IMessage,
-		IMessageHandler<PacketIncubator, IMessage> {
+	IMessageHandler<PacketIncubator, IMessage> {
 
-	int x, y, z, message;
+    int x, y, z, message;
 
-	public PacketIncubator() {
-		// TODO Auto-generated constructor stub
+    public PacketIncubator() {
+	// TODO Auto-generated constructor stub
+    }
+
+    public PacketIncubator(final int x, final int y, final int z,
+	    final int message) {
+	this.x = x;
+	this.y = y;
+	this.z = z;
+	this.message = message;
+    }
+
+    public void fromBytes(final ByteBuf buf) {
+	x = buf.readInt();
+	y = buf.readInt();
+	z = buf.readInt();
+	message = buf.readInt();
+    }
+
+    public void toBytes(final ByteBuf buf) {
+	buf.writeInt(x);
+	buf.writeInt(y);
+	buf.writeInt(z);
+	buf.writeInt(message);
+    }
+
+    public IMessage onMessage(final PacketIncubator message,
+	    final MessageContext ctx) {
+	final TileEntity tile = ctx.getServerHandler().playerEntity.worldObj
+		.getTileEntity(message.x, message.y, message.z);
+	if (tile == null) return null;
+	if (tile instanceof TileEntityIncubator) {
+	    ((TileEntityIncubator) tile).updateProductType(message.message);
+	    ctx.getServerHandler().playerEntity.worldObj.markBlockForUpdate(
+		    message.x, message.y, message.z);
 	}
-
-	public PacketIncubator(int x, int y, int z, int message) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.message = message;
-	}
-
-	public void fromBytes(ByteBuf buf) {
-		x = buf.readInt();
-		y = buf.readInt();
-		z = buf.readInt();
-		message = buf.readInt();
-	}
-
-	public void toBytes(ByteBuf buf) {
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-		buf.writeInt(message);
-	}
-
-	public IMessage onMessage(PacketIncubator message, MessageContext ctx) {
-		TileEntity tile = ctx.getServerHandler().playerEntity.worldObj
-				.getTileEntity(message.x, message.y, message.z);
-		if (tile == null)
-			return null;
-		if (tile instanceof TileEntityIncubator) {
-			((TileEntityIncubator) tile).updateProductType(message.message);
-			ctx.getServerHandler().playerEntity.worldObj.markBlockForUpdate(
-					message.x, message.y, message.z);
-		}
-		return null;
-	}
+	return null;
+    }
 
 }

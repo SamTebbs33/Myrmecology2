@@ -11,14 +11,14 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ModNet {
 
-	public static SimpleNetworkWrapper net;
+    public static SimpleNetworkWrapper net;
 
-	public static void init() {
-		NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology.instance,
-				new GuiHandler());
-		net = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
-		net.registerMessage(PacketIncubator.class, PacketIncubator.class, 0,
-				Side.SERVER);
-	}
+    public static void init() {
+	NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology.instance,
+		new GuiHandler());
+	net = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
+	net.registerMessage(PacketIncubator.class, PacketIncubator.class, 0,
+		Side.SERVER);
+    }
 
 }

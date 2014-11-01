@@ -13,31 +13,31 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
-			int x, int y, int z) {
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+    public Object getServerGuiElement(final int ID, final EntityPlayer player,
+	    final World world, final int x, final int y, final int z) {
+	final TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-		switch (ID) {
-		case Reference.GUI_ID_INCUBATOR:
-			return new ContainerIncubator(player.inventory,
-					(TileEntityIncubator) tileEntity);
-		}
-
-		return null;
+	switch (ID) {
+	    case Reference.GUI_ID_INCUBATOR:
+		return new ContainerIncubator(player.inventory,
+			(TileEntityIncubator) tileEntity);
 	}
 
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
-			int x, int y, int z) {
+	return null;
+    }
 
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
+    public Object getClientGuiElement(final int ID, final EntityPlayer player,
+	    final World world, final int x, final int y, final int z) {
 
-		switch (ID) {
-		case Reference.GUI_ID_INCUBATOR:
-			return new GuiIncubator(player.inventory,
-					(TileEntityIncubator) tileEntity);
-		}
+	final TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-		return null;
+	switch (ID) {
+	    case Reference.GUI_ID_INCUBATOR:
+		return new GuiIncubator(player.inventory,
+			(TileEntityIncubator) tileEntity);
 	}
+
+	return null;
+    }
 
 }

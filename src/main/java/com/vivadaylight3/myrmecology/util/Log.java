@@ -8,23 +8,25 @@ import cpw.mods.fml.common.FMLLog;
 
 public class Log {
 
-	public static boolean debug = true;
+    public static boolean debug = true;
 
-	public static void log(org.apache.logging.log4j.Level level, Object obj) {
-		FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
-	}
+    public static void log(final org.apache.logging.log4j.Level level,
+	    final Object obj) {
+	FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
+    }
 
-	public static void debug(Object obj) {
-		if (debug)
-			log(Level.DEBUG, obj);
+    public static void debug(final Object obj) {
+	if (debug) {
+	    log(Level.DEBUG, obj);
 	}
+    }
 
-	public static void info(Object obj) {
-		log(Level.INFO, obj);
-	}
+    public static void info(final Object obj) {
+	log(Level.INFO, obj);
+    }
 
-	public static void warn(Object obj) {
-		log(Level.WARN, obj);
-	}
+    public static void warn(final Object obj) {
+	log(Level.WARN, obj);
+    }
 
 }

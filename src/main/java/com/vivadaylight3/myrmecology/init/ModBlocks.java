@@ -1,5 +1,7 @@
 package com.vivadaylight3.myrmecology.init;
 
+import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.block.BlockAntHill;
 import com.vivadaylight3.myrmecology.block.BlockBreedingChamber;
 import com.vivadaylight3.myrmecology.block.BlockFormicariumGel;
 import com.vivadaylight3.myrmecology.block.BlockIncubator;
@@ -11,20 +13,28 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks {
 
-	public static BlockMyrmecology blockBreedingChamber, blockFormicariumGel,
-			blockIncubator;
+    public static BlockMyrmecology blockBreedingChamber, blockFormicariumGel,
+	    blockIncubator;
+    public static BlockAntHill hillForest, hillDesert;
 
-	public static void init() {
-		blockBreedingChamber = new BlockBreedingChamber();
-		blockFormicariumGel = new BlockFormicariumGel();
-		blockIncubator = new BlockIncubator();
-		addBlock(blockBreedingChamber);
-		addBlock(blockFormicariumGel);
-		addBlock(blockIncubator);
-	}
+    public static void init() {
+	blockBreedingChamber = new BlockBreedingChamber();
+	blockFormicariumGel = new BlockFormicariumGel();
+	blockIncubator = new BlockIncubator();
 
-	private static void addBlock(BlockMyrmecology block) {
-		GameRegistry.registerBlock(block, block.name);
-	}
+	hillForest = new BlockAntHill(Ants.forest);
+	hillDesert = (BlockAntHill) new BlockAntHill(Ants.desert)
+		.clearTextureSuffixes();
+
+	addBlock(blockBreedingChamber);
+	addBlock(blockFormicariumGel);
+	addBlock(blockIncubator);
+	addBlock(hillForest);
+	addBlock(hillDesert);
+    }
+
+    private static void addBlock(final BlockMyrmecology block) {
+	GameRegistry.registerBlock(block, block.name);
+    }
 
 }

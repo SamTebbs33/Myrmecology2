@@ -9,25 +9,24 @@ import com.vivadaylight3.myrmecology.item.ItemAnt;
 
 public class SlotAnt extends Slot {
 
-	Ants.AntType[] types;
+    Ants.AntType[] types;
 
-	public SlotAnt(IInventory inventory, int ID, int x, int y,
-			Ants.AntType... types) {
-		super(inventory, ID, x, y);
-		this.types = types;
-		// TODO Auto-generated constructor stub
-	}
+    public SlotAnt(final IInventory inventory, final int ID, final int x,
+	    final int y, final Ants.AntType... types) {
+	super(inventory, ID, x, y);
+	this.types = types;
+	// TODO Auto-generated constructor stub
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack stack) {
-		// TODO Auto-generated method stub
-		if (stack.getItem() instanceof ItemAnt) {
-			for (Ants.AntType type : types) {
-				if (type.val == Ants.getType(stack))
-					return true;
-			}
-		}
-		return false;
+    @Override
+    public boolean isItemValid(final ItemStack stack) {
+	// TODO Auto-generated method stub
+	if (stack.getItem() instanceof ItemAnt) {
+	    for (final Ants.AntType type : types) {
+		if (type.val == Ants.getType(stack)) return true;
+	    }
 	}
+	return false;
+    }
 
 }

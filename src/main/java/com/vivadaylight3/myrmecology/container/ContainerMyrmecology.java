@@ -10,72 +10,69 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ContainerMyrmecology extends Container {
 
-	protected TileEntity tile;
+    protected TileEntity tile;
 
-	public ContainerMyrmecology(TileEntity tile) {
-		this.tile = tile;
+    public ContainerMyrmecology(final TileEntity tile) {
+	this.tile = tile;
+    }
+
+    protected void addSlots(final int rows, final int cols, final int baseID,
+	    final IInventory inv, final int baseX, final int baseY) {
+	int c = baseID;
+	for (int y = 0; y < rows; y++) {
+	    for (int x = 0; x < cols; x++) {
+		addSlotToContainer(new Slot(inv, c, baseX + (x * 18), baseY
+			+ (y * 18)));
+		c++;
+	    }
+	}
+    }
+
+    protected void addPlayerSlots(final InventoryPlayer inv) {
+	int c = 0;
+	for (int x = 0; x < 9; x++) {
+	    addSlotToContainer(new Slot(inv, c, 8 + (x * 18), 142));
+	    c++;
+	}
+	for (int y = 0; y < 3; y++) {
+	    for (int x = 0; x < 9; x++) {
+		addSlotToContainer(new Slot(inv, c, 8 + (x * 18), 84 + (y * 18)));
+		c++;
+	    }
+	}
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(final EntityPlayer player,
+	    final int slotID) {
+	ItemStack stack = null;
+	final Slot slot = (Slot) inventorySlots.get(slotID);
+
+	if ((slot != null) && slot.getHasStack()) {
+	    final ItemStack slotStack = slot.getStack();
+	    stack = slotStack.copy();
+
+	    if (slotID < ((IInventory) tile).getSizeInventory()) {
+		if (!mergeItemStack(slotStack,
+			((IInventory) tile).getSizeInventory(),
+			inventorySlots.size(), true)) return null;
+	    } else if (!mergeItemStack(slotStack, 0,
+		    ((IInventory) tile).getSizeInventory(), false)) return null;
+
+	    if (slotStack.stackSize == 0) {
+		slot.putStack((ItemStack) null);
+	    } else {
+		slot.onSlotChanged();
+	    }
 	}
 
-	protected void addSlots(int rows, int cols, int baseID, IInventory inv,
-			int baseX, int baseY) {
-		int c = baseID;
-		for (int y = 0; y < rows; y++) {
-			for (int x = 0; x < cols; x++) {
-				this.addSlotToContainer(new Slot(inv, c, baseX + (x * 18),
-						baseY + (y * 18)));
-				c++;
-			}
-		}
-	}
+	return stack;
+    }
 
-	protected void addPlayerSlots(InventoryPlayer inv) {
-		int c = 0;
-		for (int x = 0; x < 9; x++) {
-			addSlotToContainer(new Slot(inv, c, 8 + (x * 18), 142));
-			c++;
-		}
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 9; x++) {
-				addSlotToContainer(new Slot(inv, c, 8 + (x * 18), 84 + (y * 18)));
-				c++;
-			}
-		}
-	}
-
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-		ItemStack stack = null;
-		Slot slot = (Slot) this.inventorySlots.get(slotID);
-
-		if (slot != null && slot.getHasStack()) {
-			ItemStack slotStack = slot.getStack();
-			stack = slotStack.copy();
-
-			if (slotID < ((IInventory) tile).getSizeInventory()) {
-				if (!this.mergeItemStack(slotStack,
-						((IInventory) tile).getSizeInventory(),
-						this.inventorySlots.size(), true)) {
-					return null;
-				}
-			} else if (!this.mergeItemStack(slotStack, 0,
-					((IInventory) tile).getSizeInventory(), false)) {
-				return null;
-			}
-
-			if (slotStack.stackSize == 0) {
-				slot.putStack((ItemStack) null);
-			} else {
-				slot.onSlotChanged();
-			}
-		}
-
-		return stack;
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer p_75145_1_) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean canInteractWith(final EntityPlayer p_75145_1_) {
+	// TODO Auto-generated method stub
+	return false;
+    }
 
 }

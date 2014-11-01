@@ -1,14 +1,25 @@
+// Blocks
 tile.myrmecology:breedingChamber.name=Breeding Chamber
 tile.myrmecology:formicariumGel.name=Formicarium Gel
 tile.myrmecology:incubator.name=Incubator
 
-myrmecology:ant=Ant
+// Items
+item.myrmecology:extractor.name=Ant Extractor
+
+// Ant types
+myrmecology:ant=Ant 
 myrmecology:antType.Queen=Queen
 myrmecology:antType.Drone=Drone
 myrmecology:antType.Worker=Worker
 myrmecology:antType.Larva=Larva
 
-myrmecology:antSpecies.Forest=Black
-myrmecology:antSpecies.Desert=Desert
+// Ant species
+myrmecology:antSpecies.Forest=Black 
+myrmecology:antSpecies.Desert=Desert 
 
-itemGroup.tabMyrmecology=Myrmecology
+// Ant hills
+tile.myrmecology:antHillForest.name=Black Ant Hill
+tile.myrmecology:antHillDesert.name=Desert Ant Hill
+ 
+// Creative tabs
+itemGroup.myrmecology=Myrmecology
