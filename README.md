@@ -1,7 +1,7 @@
 Myrmecology2
 ============
 
-The re-write of the Myrmecology mod
+The re-write of the Myrmecology mod, the original version of the mod can be found at www.github.com/VivaDaylight3/myrmecology
 
 Permissions and Licence
 =======================
