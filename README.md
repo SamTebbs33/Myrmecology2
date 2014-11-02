@@ -5,6 +5,8 @@ The re-write of the Myrmecology mod, the original version of the mod can be foun
 
 The MinecraftForum thread can be found at http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1291489-myrmecology-v0-1-4-capture-breed-and-enslave-ants
 
+All closed issues with the "added" label are objectives that have been reached, those that are not closed and have the "planned" label are yet to be finished.
+
 Permissions and Licence
 =======================
 
