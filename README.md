@@ -2,6 +2,7 @@ Myrmecology2
 ============
 
 The re-write of the Myrmecology mod, the original version of the mod can be found at www.github.com/VivaDaylight3/myrmecology
+
 The MinecraftForum thread can be found at http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1291489-myrmecology-v0-1-4-capture-breed-and-enslave-ants
 
 Permissions and Licence
