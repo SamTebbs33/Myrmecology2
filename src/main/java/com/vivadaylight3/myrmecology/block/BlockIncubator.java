@@ -20,6 +20,7 @@ public class BlockIncubator extends BlockMyrmecology {
 	hasTileEntity = true;
 	setHardness(3.5f);
 	this.setHarvestLevel("pickaxe", 1);
+	guiID = Reference.GUI_ID_INCUBATOR;
     }
 
     @Override
@@ -33,18 +34,6 @@ public class BlockIncubator extends BlockMyrmecology {
     public TileEntity createTileEntity(final World world, final int metadata) {
 	// TODO Auto-generated method stub
 	return new TileEntityIncubator();
-    }
-
-    @Override
-    public boolean onBlockActivated(final World world, final int x,
-	    final int y, final int z, final EntityPlayer player,
-	    final int par6, final float par7, final float par8, final float par9) {
-	if (!world.isRemote && !player.isSneaking()) {
-	    player.openGui(Myrmecology.instance, Reference.GUI_ID_INCUBATOR,
-		    world, x, y, z);
-	    return true;
-	}
-	return false;
     }
 
 }

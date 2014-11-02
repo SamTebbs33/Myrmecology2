@@ -2,6 +2,7 @@
 tile.myrmecology:breedingChamber.name=Breeding Chamber
 tile.myrmecology:formicariumGel.name=Formicarium Gel
 tile.myrmecology:incubator.name=Incubator
+tile.myrmecology:formicarium.name=Formicarium
 
 // Items
 item.myrmecology:extractor.name=Ant Extractor

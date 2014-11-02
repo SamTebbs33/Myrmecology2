@@ -2,8 +2,10 @@ package com.vivadaylight3.myrmecology.ant;
 
 import java.util.ArrayList;
 
+import net.minecraft.item.Item;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.Time;
 
@@ -30,8 +32,18 @@ public class AntSpecies {
 	AntSpecies.species.add(this);
     }
 
-    public void doBehaviour(final Coordinate coord, final int strength) {
-
+    public void doFormicariumBehaviour(final Coordinate coord, final int strength, TileEntityFormicarium tile) {
+	
+    }
+    
+    public void tryFormicariumBehaviour(final Coordinate coord, final int strength, TileEntityFormicarium tile) {
+	
+    }
+    
+    public void symbioticProduce(Coordinate coordinate,
+	    TileEntityFormicarium tileEntityFormicarium, Item item, int itemQuantity, int speciesNum) {
+	// TODO Auto-generated method stub
+	
     }
 
     public AntSpecies addBreedingRecipe(final AntSpecies drone,

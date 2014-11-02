@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 public class ContainerMyrmecology extends Container {
 
     protected TileEntity tile;
+    protected int latestSlotID;
 
     public ContainerMyrmecology(final TileEntity tile) {
 	this.tile = tile;
@@ -26,6 +27,7 @@ public class ContainerMyrmecology extends Container {
 		c++;
 	    }
 	}
+	latestSlotID = c;
     }
 
     protected void addPlayerSlots(final InventoryPlayer inv) {
@@ -40,6 +42,7 @@ public class ContainerMyrmecology extends Container {
 		c++;
 	    }
 	}
+	latestSlotID = c;
     }
 
     @Override

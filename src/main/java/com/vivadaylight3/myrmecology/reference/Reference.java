@@ -6,6 +6,6 @@ public class Reference {
 	    MOD_NAME = "Myrmecology", MOD_VERSION = "@VERSION@",
 	    PROXY_CLIENT = "com.vivadaylight3.myrmecology.proxy.ClientProxy",
 	    PROXY_SERVER = "com.vivadaylight3.myrmecology.proxy.ServerProxy";
-    public static final int GUI_ID_INCUBATOR = 0, GUI_ID_BREEDINGCHAMBER = 1;
+    public static final int GUI_ID_INCUBATOR = 0, GUI_ID_BREEDINGCHAMBER = 1, GUI_ID_FORMICARIUM = 2;
 
 }

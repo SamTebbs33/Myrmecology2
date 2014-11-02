@@ -6,7 +6,7 @@ import net.minecraft.util.StatCollector;
 public class Names {
 
     public static final String INCUBATOR = "incubator",
-	    BREEDINGCHAMBER = "breedingChamber";
+	    BREEDINGCHAMBER = "breedingChamber", FORMICARIUM = "formicarium";
 
     public static String getLocalisedBlockName(final Block block) {
 	return StatCollector.translateToLocal(block.getUnlocalizedName()

@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +17,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.vivadaylight3.myrmecology.Myrmecology;
 import com.vivadaylight3.myrmecology.init.ModTabs;
 import com.vivadaylight3.myrmecology.reference.Reference;
 
@@ -28,6 +30,7 @@ public class BlockMyrmecology extends BlockContainer {
 	    suffixRight = "_Right", suffixLeft = "_Left";
     public boolean sidedTextures = false;
     protected boolean hasTileEntity = false;
+    public int guiID = -1;
 
     public enum BlockSide {
 	BOTTOM, TOP, BACK, FRONT, LEFT, RIGHT
@@ -48,6 +51,20 @@ public class BlockMyrmecology extends BlockContainer {
 	suffixLeft = "";
 	suffixRight = "";
 	return this;
+    }
+    
+    @Override
+    public boolean onBlockActivated(final World world, final int x,
+	    final int y, final int z, final EntityPlayer player,
+	    final int par6, final float par7, final float par8, final float par9) {
+	if(this.guiID >= 0){
+	if (!world.isRemote && !player.isSneaking()) {
+	    player.openGui(Myrmecology.instance,
+		    this.guiID, world, x, y, z);
+	    return true;
+	}
+	}
+	return false;
     }
 
     private String getClassName() {
