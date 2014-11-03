@@ -3,8 +3,10 @@ package com.vivadaylight3.myrmecology.ant;
 import java.util.ArrayList;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.Maths;
@@ -16,7 +18,8 @@ public class AntSpecies {
     public int matureTicks = Time.ticksFromSeconds(10), breedTicks = Time
 	    .ticksFromMinutes(1), fertility = 2, fertilityPlus = 1,
 	    fertilityMinus = 0, hillRarity = 1;
-    public String speciesName = "Default", binomialName = "Antus Defaultus";
+    public String speciesName = "Default", binomialName = "Antus Defaultus", behaviourDesc = "";
+
     public boolean isHillAnt = true, winged = false, nocturnal = false,
 	    hasEntity = false, hasBehaviour = false;
     public BiomeGenBase[] biomes;
@@ -49,6 +52,12 @@ public class AntSpecies {
 	    final int itemQuantity, final int speciesNum) {
 	// TODO Auto-generated method stub
 
+    }
+
+    public String getLocalSpeciesName() {
+	return StatCollector.translateToLocal(Reference.MOD_ID + ":antSpecies."
+		+ speciesName)
+		+ StatCollector.translateToLocal(Reference.MOD_ID + ":ant");
     }
 
     public AntSpecies addBreedingRecipe(final AntSpecies drone,
@@ -113,6 +122,11 @@ public class AntSpecies {
     public AntSpecies setHasBehaviour(final boolean hasBehaviour) {
 	this.hasBehaviour = hasBehaviour;
 	return this;
+    }
+    
+    public AntSpecies setBehaviourDesc(String behaviourDesc) {
+        this.behaviourDesc = behaviourDesc;
+        return this;
     }
 
 }

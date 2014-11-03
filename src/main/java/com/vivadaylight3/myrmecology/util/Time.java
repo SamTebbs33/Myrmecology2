@@ -10,4 +10,8 @@ public class Time {
 	return seconds * 20;
     }
 
+    public static int secondsFromTicks(final int ticks) {
+	return ticks / 20;
+    }
+
 }

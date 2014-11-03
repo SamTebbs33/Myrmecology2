@@ -11,6 +11,7 @@ import net.minecraft.util.StatCollector;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.init.ModTabs;
 import com.vivadaylight3.myrmecology.reference.Reference;
 
 import cpw.mods.fml.relauncher.Side;
@@ -26,6 +27,7 @@ public class ItemAnt extends ItemMyrmecology {
 
     public ItemAnt() {
 	super();
+	this.setCreativeTab(ModTabs.ants);
 	setMaxStackSize(maxStackSize2);
 	setHasSubtypes(true);
 	setMaxDamage(0);

@@ -13,6 +13,19 @@ public class ModTabs {
 	@Override
 	public Item getTabIconItem() {
 	    // TODO Auto-generated method stub
+	    return ModItems.myrmopaedia;
+	}
+
+	@Override
+	public boolean hasSearchBar() {
+	    // TODO Auto-generated method stub
+	    return true;
+	}
+
+    }, ants = new CreativeTabs(Reference.MOD_ID+"Ants"){
+	@Override
+	public Item getTabIconItem() {
+	    // TODO Auto-generated method stub
 	    return ModItems.ant;
 	}
 
@@ -27,7 +40,6 @@ public class ModTabs {
 	    // TODO Auto-generated method stub
 	    return true;
 	}
-
     };
 
 }

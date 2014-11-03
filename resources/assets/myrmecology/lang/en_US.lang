@@ -20,6 +20,7 @@ myrmecology:antType.Larva=Larva
 // Ant species
 myrmecology:antSpecies.Forest=Black 
 myrmecology:antSpecies.Desert=Desert 
+myrmecology:antSpecies.Swamp=Swamp 
 
 // Ant hills
 tile.myrmecology:antHillForest.name=Black Ant Hill
@@ -27,3 +28,4 @@ tile.myrmecology:antHillDesert.name=Desert Ant Hill
  
 // Creative tabs
 itemGroup.myrmecology=Myrmecology
+itemGroup.myrmecologyAnts=Myrmecology Ants

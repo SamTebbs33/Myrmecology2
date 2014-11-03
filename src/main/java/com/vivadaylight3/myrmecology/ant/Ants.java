@@ -11,10 +11,9 @@ public class Ants {
 	    "Queen" };
 
     public static AntSpecies forest = new AntSpecies(0x020202, 0x333333,
-	    "Forest", "Lasius Niger", BiomeGenBase.forest) {
-
-    }, desert = new AntSpecies(0x898000, 0xeada00, "Desert", "Antus Desertus",
-	    BiomeGenBase.desert);
+	    "Forest", "Lasius Niger", BiomeGenBase.forest, BiomeGenBase.birchForest), desert = new AntSpecies(0x898000, 0xeada00, "Desert", "Antus Desertus",
+	    BiomeGenBase.desert, BiomeGenBase.desertHills),
+	    swamp = new AntSpecies(0x210020, 0x4B0049, "Swamp", "Antus Swampus", BiomeGenBase.swampland);
 
     public enum AntType {
 	LARVA(0), DRONE(1), WORKER(2), QUEEN(3);
@@ -43,17 +42,17 @@ public class Ants {
 	return AntSpecies.species.get(stack.getItemDamage() / typeNames.length);
     }
 
-    public static ItemStack getBreedingResult(final ItemStack queen,
-	    final ItemStack drone) {
-	return getBreedingResult(getSpecies(queen), getSpecies(drone));
+    public static ItemStack getBreedingResult(final ItemStack ant1,
+	    final ItemStack ant2) {
+	return getBreedingResult(getSpecies(ant1), getSpecies(ant2));
     }
 
-    private static ItemStack getBreedingResult(final AntSpecies queen,
-	    final AntSpecies drone) {
+    private static ItemStack getBreedingResult(final AntSpecies ant1,
+	    final AntSpecies ant2) {
 	for (final AntBreedingRecipe recipe : AntBreedingRecipe.globalBreedingRecipes) {
-	    if ((recipe.drone == drone) && (recipe.queen == queen)) return getItemStack(
+	    if (recipe.match(ant1, ant2)) return getItemStack(
 		    recipe.output, AntType.LARVA,
-		    Math.min(drone.fertility, queen.fertility));
+		    Math.min(ant2.fertility, ant1.fertility));
 	}
 	return null;
     }
