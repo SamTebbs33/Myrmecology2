@@ -14,7 +14,8 @@ public class ModTileEntities {
 		Names.INCUBATOR);
 	GameRegistry.registerTileEntity(TileEntityBreedingChamber.class,
 		Names.BREEDINGCHAMBER);
-	GameRegistry.registerTileEntity(TileEntityFormicarium.class, Names.FORMICARIUM);
+	GameRegistry.registerTileEntity(TileEntityFormicarium.class,
+		Names.FORMICARIUM);
     }
 
 }

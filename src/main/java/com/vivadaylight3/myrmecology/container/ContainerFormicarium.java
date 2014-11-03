@@ -4,16 +4,19 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 
 import com.vivadaylight3.myrmecology.ant.Ants;
-import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 
 public class ContainerFormicarium extends ContainerMyrmecology {
 
-    public ContainerFormicarium(InventoryPlayer inventory, TileEntityFormicarium tile) {
+    public ContainerFormicarium(final InventoryPlayer inventory,
+	    final TileEntityFormicarium tile) {
 	super(tile);
-	super.addSlots(tile.rowsSymbiosis, tile.colsSymbiosis, 0, tile, 49, 56);
-	addSlots(tile.rowsWorkers, tile.colsWorkers, latestSlotID, tile, 18, 17);
-	super.addSlots(tile.rowsProduce, tile.colsProduce, latestSlotID, tile, 80, 17);
+	super.addSlots(TileEntityFormicarium.rowsSymbiosis,
+		TileEntityFormicarium.colsSymbiosis, 0, tile, 49, 56);
+	addSlots(TileEntityFormicarium.rowsWorkers,
+		TileEntityFormicarium.colsWorkers, latestSlotID, tile, 18, 17);
+	super.addSlots(TileEntityFormicarium.rowsProduce,
+		TileEntityFormicarium.colsProduce, latestSlotID, tile, 80, 17);
 	addPlayerSlots(inventory);
     }
 

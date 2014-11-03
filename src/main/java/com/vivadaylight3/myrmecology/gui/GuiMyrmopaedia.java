@@ -1,25 +1,29 @@
 package com.vivadaylight3.myrmecology.gui;
 
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
+import com.vivadaylight3.myrmecology.container.ContainerMyrmopaedia;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.reference.Names;
 import com.vivadaylight3.myrmecology.reference.Resources;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
-
 public class GuiMyrmopaedia extends GuiContainer {
-    
+
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.MYRMOPAEDIA);
 
-    public GuiMyrmopaedia(Container container) {
+    public GuiMyrmopaedia(final ContainerMyrmopaedia container) {
 	super(container);
-	this.xSize += this.xSize / 4;
-	this.ySize += this.ySize / 2 + 7;
+	xSize += xSize / 4;
+	ySize += (ySize / 2) + 7;
+    }
+
+    @Override
+    public void onGuiClosed() {
+	// ((ContainerMyrmopaedia) this.inventorySlots).inventory.writeToNBT();
     }
 
     @Override
@@ -39,7 +43,6 @@ public class GuiMyrmopaedia extends GuiContainer {
 	final int k = (width - xSize) / 2;
 	final int l = (height - ySize) / 2;
 	drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
-
     }
 
 }

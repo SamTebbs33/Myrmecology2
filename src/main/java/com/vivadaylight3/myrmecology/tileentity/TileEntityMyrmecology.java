@@ -26,17 +26,17 @@ public class TileEntityMyrmecology extends TileEntity implements
 	this.maxStackSize = maxStackSize;
 	this.name = name;
     }
-    
-    protected void onInventoryChanged(){
-	
+
+    protected void onInventoryChanged() {
+
     }
 
     public int getSizeInventory() {
 	return inventory.length;
     }
-    
-    public Coordinate getCoordinate(){
-	return new Coordinate(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+
+    public Coordinate getCoordinate() {
+	return new Coordinate(worldObj, xCoord, yCoord, zCoord);
     }
 
     public ItemStack getStackInSlot(final int slot) {
@@ -50,7 +50,7 @@ public class TileEntityMyrmecology extends TileEntity implements
 	    if (inventory[index].stackSize <= amount) {
 		itemstack = inventory[index];
 		inventory[index] = null;
-		this.onInventoryChanged();
+		onInventoryChanged();
 		return itemstack;
 	    } else {
 		itemstack = inventory[index].splitStack(amount);
@@ -58,7 +58,7 @@ public class TileEntityMyrmecology extends TileEntity implements
 		if (inventory[index].stackSize == 0) {
 		    inventory[index] = null;
 		}
-		this.onInventoryChanged();
+		onInventoryChanged();
 		return itemstack;
 	    }
 	} else return null;
@@ -70,7 +70,7 @@ public class TileEntityMyrmecology extends TileEntity implements
 
     public void setInventorySlotContents(final int slot, final ItemStack stack) {
 	inventory[slot] = stack;
-	this.onInventoryChanged();
+	onInventoryChanged();
     }
 
     public String getInventoryName() {
@@ -198,26 +198,24 @@ public class TileEntityMyrmecology extends TileEntity implements
 
     public void addItemStackToInventory(final ItemStack item) {
 
-	if(item == null){
-	    return;
-	}
-	
-	if(item.stackSize < 1) return;
-	
+	if (item == null) return;
+
+	if (item.stackSize < 1) return;
+
 	int left = item.stackSize;
 	final int max = getInventoryStackLimit();
 
 	for (int k = 0; k < item.stackSize; k++) {
 
-	    if (left < 1){ 
-		this.onInventoryChanged();
+	    if (left < 1) {
+		onInventoryChanged();
 		return;
 	    }
 
 	    for (int i = 0; i < inventory.length; i++) {
 
-		if (left < 1){ 
-		    this.onInventoryChanged();
+		if (left < 1) {
+		    onInventoryChanged();
 		    return;
 		}
 
@@ -268,8 +266,8 @@ public class TileEntityMyrmecology extends TileEntity implements
 	    }
 
 	}
-	
-	this.onInventoryChanged();
+
+	onInventoryChanged();
 	return;
 
     }

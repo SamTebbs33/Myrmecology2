@@ -52,17 +52,16 @@ public class BlockMyrmecology extends BlockContainer {
 	suffixRight = "";
 	return this;
     }
-    
+
     @Override
     public boolean onBlockActivated(final World world, final int x,
 	    final int y, final int z, final EntityPlayer player,
 	    final int par6, final float par7, final float par8, final float par9) {
-	if(this.guiID >= 0){
-	if (!world.isRemote && !player.isSneaking()) {
-	    player.openGui(Myrmecology.instance,
-		    this.guiID, world, x, y, z);
-	    return true;
-	}
+	if (guiID >= 0) {
+	    if (!world.isRemote && !player.isSneaking()) {
+		player.openGui(Myrmecology.instance, guiID, world, x, y, z);
+		return true;
+	    }
 	}
 	return false;
     }

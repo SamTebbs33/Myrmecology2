@@ -9,7 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 
-    public static ItemMyrmecology extractor = new ItemExtractor(), myrmopaedia = new ItemMyrmopaedia(), ant = new ItemAnt();
+    public static ItemMyrmecology extractor = new ItemExtractor(),
+	    myrmopaedia = new ItemMyrmopaedia(), ant = new ItemAnt();
 
     public static void init() {
 	addItem(extractor);

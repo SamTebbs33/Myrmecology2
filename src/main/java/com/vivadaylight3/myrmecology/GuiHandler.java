@@ -34,9 +34,11 @@ public class GuiHandler implements IGuiHandler {
 		return new ContainerBreedingChamber(player.inventory,
 			(TileEntityBreedingChamber) tileEntity);
 	    case Reference.GUI_ID_FORMICARIUM:
-		return new ContainerFormicarium(player.inventory, (TileEntityFormicarium) tileEntity);
+		return new ContainerFormicarium(player.inventory,
+			(TileEntityFormicarium) tileEntity);
 	    case Reference.GUI_ID_MYRMOPAEDIA:
-		return new ContainerMyrmopaedia(new InventoryItem(player.getHeldItem(), 1), player.inventory);
+		return new ContainerMyrmopaedia(new InventoryItem(
+			player.getHeldItem(), 1), player.inventory, world);
 	}
 
 	return null;
@@ -55,9 +57,12 @@ public class GuiHandler implements IGuiHandler {
 		return new GuiBreedingChamber(player.inventory,
 			(TileEntityBreedingChamber) tileEntity);
 	    case Reference.GUI_ID_FORMICARIUM:
-		return new GuiFormicarium(player.inventory, (TileEntityFormicarium) tileEntity);
+		return new GuiFormicarium(player.inventory,
+			(TileEntityFormicarium) tileEntity);
 	    case Reference.GUI_ID_MYRMOPAEDIA:
-		return new GuiMyrmopaedia(new ContainerMyrmopaedia(new InventoryItem(player.getHeldItem(), 1), player.inventory));
+		return new GuiMyrmopaedia(new ContainerMyrmopaedia(
+			new InventoryItem(player.getHeldItem(), 1),
+			player.inventory, world));
 	}
 
 	return null;

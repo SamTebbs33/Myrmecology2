@@ -23,7 +23,7 @@ public class ModBlocks {
 	blockFormicariumGel = new BlockFormicariumGel();
 	blockIncubator = new BlockIncubator();
 	blockFormicarium = new BlockFormicarium();
-	
+
 	hillForest = new BlockAntHill(Ants.forest);
 	hillDesert = (BlockAntHill) new BlockAntHill(Ants.desert)
 		.clearTextureSuffixes();

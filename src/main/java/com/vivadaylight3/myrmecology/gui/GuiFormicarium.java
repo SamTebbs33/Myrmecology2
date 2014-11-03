@@ -1,21 +1,19 @@
 package com.vivadaylight3.myrmecology.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import com.vivadaylight3.myrmecology.container.ContainerBreedingChamber;
+import org.lwjgl.opengl.GL11;
+
 import com.vivadaylight3.myrmecology.container.ContainerFormicarium;
 import com.vivadaylight3.myrmecology.reference.Names;
 import com.vivadaylight3.myrmecology.reference.Resources;
-import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 
 public class GuiFormicarium extends GuiContainer {
-    
+
     TileEntityFormicarium tile;
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.FORMICARIUM);

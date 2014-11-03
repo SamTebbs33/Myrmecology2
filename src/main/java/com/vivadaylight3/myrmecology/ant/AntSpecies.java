@@ -1,7 +1,6 @@
 package com.vivadaylight3.myrmecology.ant;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import net.minecraft.item.Item;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -10,8 +9,6 @@ import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.Maths;
 import com.vivadaylight3.myrmecology.util.Time;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class AntSpecies {
 
@@ -36,19 +33,22 @@ public class AntSpecies {
 	AntSpecies.species.add(this);
     }
 
-    public void doFormicariumBehaviour(final Coordinate coord, final int strength, TileEntityFormicarium tile) {
-    }
-    
-    public void tryFormicariumBehaviour(final Coordinate coord, final int strength, TileEntityFormicarium tile) {
-	if(Maths.chance(TileEntityFormicarium.slotsWorkers.length*64 - strength)){
+    public void doFormicariumBehaviour(final Coordinate coord,
+	    final int strength, final TileEntityFormicarium tile) {}
+
+    public void tryFormicariumBehaviour(final Coordinate coord,
+	    final int strength, final TileEntityFormicarium tile) {
+	if (Maths.chance((TileEntityFormicarium.slotsWorkers.length * 64)
+		- strength)) {
 	    doFormicariumBehaviour(coord, strength, tile);
 	}
     }
-    
-    public void symbioticProduce(Coordinate coordinate,
-	    TileEntityFormicarium tileEntityFormicarium, Item item, int itemQuantity, int speciesNum) {
+
+    public void symbioticProduce(final Coordinate coordinate,
+	    final TileEntityFormicarium tileEntityFormicarium, final Item item,
+	    final int itemQuantity, final int speciesNum) {
 	// TODO Auto-generated method stub
-	
+
     }
 
     public AntSpecies addBreedingRecipe(final AntSpecies drone,

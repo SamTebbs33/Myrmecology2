@@ -21,9 +21,10 @@ public class Log {
 	    log(Level.DEBUG, obj);
 	}
     }
-    
-    public static void player(String str){
-	FMLClientHandler.instance().getClientPlayerEntity().sendChatMessage(str);
+
+    public static void player(final String str) {
+	FMLClientHandler.instance().getClientPlayerEntity()
+		.sendChatMessage(str);
     }
 
     public static void info(final Object obj) {

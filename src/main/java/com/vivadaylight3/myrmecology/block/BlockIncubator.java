@@ -1,11 +1,9 @@
 package com.vivadaylight3.myrmecology.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.vivadaylight3.myrmecology.Myrmecology;
 import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityIncubator;
 

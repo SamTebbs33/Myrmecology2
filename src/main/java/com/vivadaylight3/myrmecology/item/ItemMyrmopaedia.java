@@ -12,25 +12,26 @@ public class ItemMyrmopaedia extends ItemMyrmecology {
     public ItemMyrmopaedia() {
 	super();
     }
-    
-    @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-	    EntityPlayer par3EntityPlayer) {
 
-	this.onItemUse(par1ItemStack, par3EntityPlayer, par2World,
+    @Override
+    public ItemStack onItemRightClick(final ItemStack par1ItemStack,
+	    final World par2World, final EntityPlayer par3EntityPlayer) {
+
+	onItemUse(par1ItemStack, par3EntityPlayer, par2World,
 		(int) par3EntityPlayer.posX, (int) par3EntityPlayer.posY,
 		(int) par3EntityPlayer.posZ, 0, 0f, 0f, 0f);
 	return par1ItemStack;
     }
 
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player,
-	    World world, int x, int y, int z, int par7, float par8, float par9,
-	    float par10) {
+    public boolean onItemUse(final ItemStack stack, final EntityPlayer player,
+	    final World world, final int x, final int y, final int z,
+	    final int par7, final float par8, final float par9,
+	    final float par10) {
 
 	if (!world.isRemote && !player.isSneaking()) {
 	    player.openGui(Myrmecology.instance, Reference.GUI_ID_MYRMOPAEDIA,
-		world, x, y, z);
+		    world, x, y, z);
 	}
 
 	return true;
