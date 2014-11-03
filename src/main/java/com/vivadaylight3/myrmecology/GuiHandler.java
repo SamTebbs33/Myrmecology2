@@ -7,9 +7,12 @@ import net.minecraft.world.World;
 import com.vivadaylight3.myrmecology.container.ContainerBreedingChamber;
 import com.vivadaylight3.myrmecology.container.ContainerFormicarium;
 import com.vivadaylight3.myrmecology.container.ContainerIncubator;
+import com.vivadaylight3.myrmecology.container.ContainerMyrmopaedia;
+import com.vivadaylight3.myrmecology.container.InventoryItem;
 import com.vivadaylight3.myrmecology.gui.GuiBreedingChamber;
 import com.vivadaylight3.myrmecology.gui.GuiFormicarium;
 import com.vivadaylight3.myrmecology.gui.GuiIncubator;
+import com.vivadaylight3.myrmecology.gui.GuiMyrmopaedia;
 import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
@@ -32,6 +35,8 @@ public class GuiHandler implements IGuiHandler {
 			(TileEntityBreedingChamber) tileEntity);
 	    case Reference.GUI_ID_FORMICARIUM:
 		return new ContainerFormicarium(player.inventory, (TileEntityFormicarium) tileEntity);
+	    case Reference.GUI_ID_MYRMOPAEDIA:
+		return new ContainerMyrmopaedia(new InventoryItem(player.getHeldItem(), 1), player.inventory);
 	}
 
 	return null;
@@ -51,6 +56,8 @@ public class GuiHandler implements IGuiHandler {
 			(TileEntityBreedingChamber) tileEntity);
 	    case Reference.GUI_ID_FORMICARIUM:
 		return new GuiFormicarium(player.inventory, (TileEntityFormicarium) tileEntity);
+	    case Reference.GUI_ID_MYRMOPAEDIA:
+		return new GuiMyrmopaedia(new ContainerMyrmopaedia(new InventoryItem(player.getHeldItem(), 1), player.inventory));
 	}
 
 	return null;

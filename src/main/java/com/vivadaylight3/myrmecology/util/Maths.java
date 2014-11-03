@@ -19,7 +19,7 @@ public class Maths {
     }
 
     public static boolean chance(final int j) {
-	return new Random().nextInt(j) == 1;
+	return new Random().nextInt(j == 0 ? 1 : j) == 0;
     }
 
 }

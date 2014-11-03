@@ -11,7 +11,9 @@ public class Ants {
 	    "Queen" };
 
     public static AntSpecies forest = new AntSpecies(0x020202, 0x333333,
-	    "Forest", "Lasius Niger", BiomeGenBase.forest),
+	    "Forest", "Lasius Niger", BiomeGenBase.forest){
+	
+    },
 	    desert = new AntSpecies(0x898000, 0xeada00, "Desert",
 		    "Antus Desertus", BiomeGenBase.desert);
 

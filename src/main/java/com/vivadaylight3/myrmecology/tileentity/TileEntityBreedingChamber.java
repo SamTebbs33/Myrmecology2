@@ -22,7 +22,7 @@ public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 
     public TileEntityBreedingChamber() {
 	super(2 + (rows * cols), 64, Names
-		.getLocalisedBlockName(ModBlocks.blockBreedingChamber));
+		.getLocalisedName(ModBlocks.blockBreedingChamber));
     }
 
     @Override

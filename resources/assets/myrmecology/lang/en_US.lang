@@ -7,6 +7,8 @@ tile.myrmecology:formicarium.name=Formicarium
 // Items
 item.myrmecology:extractor.name=Ant Extractor
 item.myrmecology:extractor.desc=Extracts ants from ant hills
+item.myrmecology:myrmopaedia.name=Myrmopaedia
+item.myrmecology:myrmopaedia.desc=Examines the properties of ants
 
 // Ant types
 myrmecology:ant=Ant 

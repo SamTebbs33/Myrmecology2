@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Level;
 
 import com.vivadaylight3.myrmecology.reference.Reference;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLLog;
 
 public class Log {
@@ -19,6 +20,10 @@ public class Log {
 	if (debug) {
 	    log(Level.DEBUG, obj);
 	}
+    }
+    
+    public static void player(String str){
+	FMLClientHandler.instance().getClientPlayerEntity().sendChatMessage(str);
     }
 
     public static void info(final Object obj) {

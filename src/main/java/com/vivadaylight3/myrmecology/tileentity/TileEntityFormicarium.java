@@ -14,6 +14,9 @@ import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.reference.Names;
 import com.vivadaylight3.myrmecology.util.Coordinate;
+import com.vivadaylight3.myrmecology.util.Log;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class TileEntityFormicarium extends TileEntityMyrmecology {
 
@@ -24,7 +27,7 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
     private HashMap<AntSpecies, Integer> speciesMap = new HashMap<AntSpecies, Integer>();
     
     public TileEntityFormicarium() {
-	super(rowsProduce*colsProduce + rowsSymbiosis*colsSymbiosis + rowsWorkers*colsWorkers, 64, Names.getLocalisedBlockName(ModBlocks.blockFormicarium));
+	super(rowsProduce*colsProduce + rowsSymbiosis*colsSymbiosis + rowsWorkers*colsWorkers, 64, Names.getLocalisedName(ModBlocks.blockFormicarium));
     }
     
     protected void onInventoryChanged(){
@@ -37,7 +40,7 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
 		if(current != null){
 		    speciesMap.put(species, current+inventory[slot].stackSize);
 		}else{
-		    speciesMap.put(species, 1);
+		    speciesMap.put(species, inventory[slot].stackSize);
 		}
 	    }
 	}
