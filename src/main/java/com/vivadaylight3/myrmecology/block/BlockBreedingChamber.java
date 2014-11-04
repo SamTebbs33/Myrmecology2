@@ -15,7 +15,6 @@ public class BlockBreedingChamber extends BlockMyrmecology {
 	suffixTop = "_Top";
 	suffixBottom = "_Top";
 	sidedTextures = true;
-	setBlockBounds(0.1f, 0.1f, 0.1f, 0.9f, 0.9f, 0.9f);
 	hasTileEntity = true;
 	this.setHarvestLevel("pickaxe", 1);
 	guiID = Reference.GUI_ID_BREEDINGCHAMBER;

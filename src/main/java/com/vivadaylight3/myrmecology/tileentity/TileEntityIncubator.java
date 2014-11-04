@@ -22,7 +22,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 
     public TileEntityIncubator() {
 	super(1 + (rows * columns), 64, StatCollector
-		.translateToLocal(ModBlocks.blockIncubator.getUnlocalizedName()
+		.translateToLocal(ModBlocks.incubator.getUnlocalizedName()
 			+ ".name"));
     }
 
@@ -46,6 +46,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
     public void updateEntity() {
 	final ItemStack larva = inventory[0];
 	if (larva != null) {
+	    if(worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)){
 	    if (Ants.getType(larva) == Ants.AntType.LARVA.val) {
 		if (meta == larva.getItemDamage()) {
 		    if (inventoryCanHold(getProduct(larva))) {
@@ -64,6 +65,9 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 	    } else {
 		reset();
 	    }
+	}else{
+	    reset();
+	}
 	} else {
 	    reset();
 	}

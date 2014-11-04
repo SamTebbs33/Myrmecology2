@@ -12,8 +12,24 @@ public class BlockFormicarium extends BlockMyrmecology {
     public BlockFormicarium() {
 	super(Material.glass);
 	hasTileEntity = true;
+	clearTextureSuffixes();
+	suffixTop = "_Top";
+	suffixBottom = "_Top";
+	sidedTextures = true;
+	setBlockBounds(0.1f, 0.1f, 0.1f, 0.9f, 0.9f, 0.9f);
 	this.setHarvestLevel("pickaxe", 1);
 	guiID = Reference.GUI_ID_FORMICARIUM;
+    }
+    
+    @Override
+    public boolean renderAsNormalBlock() {
+	return true;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+	// TODO Auto-generated method stub
+	return false;
     }
 
     @Override

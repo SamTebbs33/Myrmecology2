@@ -2,6 +2,7 @@ package com.vivadaylight3.myrmecology.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -40,6 +41,33 @@ public class ContainerMyrmopaedia extends ContainerMyrmecology {
     @Override
     public boolean canInteractWith(final EntityPlayer p_75145_1_) {
 	return true;
+    }
+    
+    @Override
+    public ItemStack transferStackInSlot(final EntityPlayer player,
+	    final int slotID) {
+	ItemStack stack = null;
+	final Slot slot = (Slot) inventorySlots.get(slotID);
+
+	if ((slot != null) && slot.getHasStack()) {
+	    final ItemStack slotStack = slot.getStack();
+	    stack = slotStack.copy();
+
+	    if (slotID < ((IInventory) inventory).getSizeInventory()) {
+		if (!mergeItemStack(slotStack,
+			((IInventory) inventory).getSizeInventory(),
+			inventorySlots.size(), true)) return null;
+	    } else if (!mergeItemStack(slotStack, 0,
+		    ((IInventory) inventory).getSizeInventory(), false)) return null;
+
+	    if (slotStack.stackSize == 0) {
+		slot.putStack((ItemStack) null);
+	    } else {
+		slot.onSlotChanged();
+	    }
+	}
+
+	return stack;
     }
 
     @Override

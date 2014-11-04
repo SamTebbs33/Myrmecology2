@@ -3,6 +3,7 @@ package com.vivadaylight3.myrmecology;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.init.ModNet;
+import com.vivadaylight3.myrmecology.init.ModRecipes;
 import com.vivadaylight3.myrmecology.init.ModTileEntities;
 import com.vivadaylight3.myrmecology.proxy.IProxy;
 import com.vivadaylight3.myrmecology.reference.Reference;
@@ -54,6 +55,7 @@ public class Myrmecology {
     @EventHandler
     public void init(final FMLInitializationEvent event) {
 	Log.info("Init");
+	ModRecipes.init();
     }
 
     /**

@@ -33,7 +33,7 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
     public TileEntityFormicarium() {
 	super((rowsProduce * colsProduce) + (rowsSymbiosis * colsSymbiosis)
 		+ (rowsWorkers * colsWorkers), 64, Names
-		.getLocalisedName(ModBlocks.blockFormicarium));
+		.getLocalisedName(ModBlocks.formicarium));
     }
 
     @Override
