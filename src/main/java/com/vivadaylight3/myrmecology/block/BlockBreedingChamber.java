@@ -12,8 +12,6 @@ public class BlockBreedingChamber extends BlockMyrmecology {
     public BlockBreedingChamber() {
 	super(Material.glass);
 	clearTextureSuffixes();
-	suffixTop = "_Top";
-	suffixBottom = "_Top";
 	sidedTextures = true;
 	hasTileEntity = true;
 	this.setHarvestLevel("pickaxe", 1);
