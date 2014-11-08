@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 import com.vivadaylight3.myrmecology.Myrmecology;
 import com.vivadaylight3.myrmecology.reference.Reference;
 
-public class ItemMyrmopaedia extends ItemMyrmecology {
+public class ItemMyrmecologyBook extends ItemMyrmecology {
 
-    public ItemMyrmopaedia() {
+    public ItemMyrmecologyBook() {
 	super();
     }
 
@@ -30,8 +30,7 @@ public class ItemMyrmopaedia extends ItemMyrmecology {
 	    final float par10) {
 
 	if (!world.isRemote && !player.isSneaking()) player.openGui(
-		Myrmecology.instance, Reference.GUI_ID_MYRMOPAEDIA, world, x,
-		y, z);
+		Myrmecology.instance, Reference.GUI_ID_BOOK, world, x, y, z);
 
 	return true;
 

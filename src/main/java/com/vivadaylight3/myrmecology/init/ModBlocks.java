@@ -13,9 +13,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks {
 
-    public static BlockMyrmecology breedingChamber,
-	    incubator, formicarium;
+    public static BlockMyrmecology breedingChamber, incubator, formicarium;
     public static BlockAntHill hillForest, hillDesert;
+
+    private static void addBlock(final BlockMyrmecology block) {
+	GameRegistry.registerBlock(block, block.name);
+    }
 
     public static void init() {
 	breedingChamber = new BlockBreedingChamber();
@@ -30,10 +33,6 @@ public class ModBlocks {
 	addBlock(formicarium);
 	addBlock(hillForest);
 	addBlock(hillDesert);
-    }
-
-    private static void addBlock(final BlockMyrmecology block) {
-	GameRegistry.registerBlock(block, block.name);
     }
 
 }

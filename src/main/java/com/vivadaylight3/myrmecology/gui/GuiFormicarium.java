@@ -14,26 +14,14 @@ import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 
 public class GuiFormicarium extends GuiContainer {
 
-    TileEntityFormicarium tile;
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.FORMICARIUM);
+    TileEntityFormicarium tile;
 
     public GuiFormicarium(final InventoryPlayer inventory,
 	    final TileEntityFormicarium tileEntity) {
 	super(new ContainerFormicarium(inventory, tileEntity));
 	tile = tileEntity;
-    }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
-	    final int p_146979_2_) {
-	final String s = tile.getInventoryName();
-	fontRendererObj.drawString(s,
-		(xSize / 2) - (fontRendererObj.getStringWidth(s) / 2), 6,
-		4210752);
-	fontRendererObj.drawString(
-		I18n.format("container.inventory", new Object[0]), 8,
-		(ySize - 96) + 2, 4210752);
     }
 
     @Override
@@ -44,6 +32,17 @@ public class GuiFormicarium extends GuiContainer {
 	final int k = (width - xSize) / 2;
 	final int l = (height - ySize) / 2;
 	drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
+	    final int p_146979_2_) {
+	final String s = tile.getInventoryName();
+	fontRendererObj.drawString(s,
+		xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+	fontRendererObj.drawString(
+		I18n.format("container.inventory", new Object[0]), 8,
+		ySize - 96 + 2, 4210752);
     }
 
 }

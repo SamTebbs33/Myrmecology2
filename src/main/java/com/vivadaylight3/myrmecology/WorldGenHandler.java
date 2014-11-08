@@ -29,17 +29,14 @@ public class WorldGenHandler implements IWorldGenerator {
 	    case 0:
 		// Overworld
 		final Random rand = new Random();
-		final int blockX = (chunkX * 16) + rand.nextInt(16);
-		final int blockZ = (chunkZ * 16) + rand.nextInt(16);
+		final int blockX = chunkX * 16 + rand.nextInt(16);
+		final int blockZ = chunkZ * 16 + rand.nextInt(16);
 		final int blockY = world.getHeightValue(blockX, blockZ);
 		final BiomeGenBase biome = world.getBiomeGenForCoords(blockX,
 			blockZ);
-		for (final BlockAntHill block : BlockAntHill.hills) {
+		for (final BlockAntHill block : BlockAntHill.hills)
 		    if (block.generate(new Coordinate(world, blockX, blockY,
-			    blockZ), biome, rand)) {
-			break;
-		    }
-		}
+			    blockZ), biome, rand)) break;
 		break;
 	    case 1:
 		// End

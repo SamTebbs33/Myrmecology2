@@ -22,13 +22,12 @@ public class ContainerBreedingChamber extends ContainerMyrmecology {
     protected void addSlots(final int rows, final int cols, final int baseID,
 	    final IInventory inv, final int baseX, final int baseY) {
 	int c = baseID;
-	for (int y = 0; y < rows; y++) {
+	for (int y = 0; y < rows; y++)
 	    for (int x = 0; x < cols; x++) {
-		addSlotToContainer(new SlotAnt(inv, c, baseX + (x * 18), baseY
-			+ (y * 18), Ants.AntType.LARVA));
+		addSlotToContainer(new SlotAnt(inv, c, baseX + x * 18, baseY
+			+ y * 18, Ants.AntType.LARVA));
 		c++;
 	    }
-	}
     }
 
 }

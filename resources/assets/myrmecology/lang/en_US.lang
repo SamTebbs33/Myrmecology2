@@ -1,6 +1,5 @@
 // Blocks
 tile.myrmecology:breedingChamber.name=Breeding Chamber
-tile.myrmecology:formicariumDirt.name=Rich Dirt
 tile.myrmecology:incubator.name=Incubator
 tile.myrmecology:formicarium.name=Formicarium
 
@@ -9,18 +8,35 @@ item.myrmecology:extractor.name=Ant Extractor
 item.myrmecology:extractor.desc=Extracts ants from ant hills
 item.myrmecology:myrmopaedia.name=Myrmopaedia
 item.myrmecology:myrmopaedia.desc=Examines the properties of ants
+item.myrmecology:myrmecologyBook.name=Myrmecologist's Manual
 
 // Ant types
-myrmecology:ant=Ant 
-myrmecology:antType.Queen=Queen
-myrmecology:antType.Drone=Drone
-myrmecology:antType.Worker=Worker
-myrmecology:antType.Larva=Larva
+ant.myrmecology=Ant 
+ant.myrmecology:Queen=Queen
+ant.myrmecology:Drone=Drone
+ant.myrmecology:Worker=Worker
+ant.myrmecology:Larva=Larva
 
 // Ant species
-myrmecology:antSpecies.Forest=Black 
-myrmecology:antSpecies.Desert=Desert 
-myrmecology:antSpecies.Swamp=Swamp 
+species.myrmecology:Forest=Black 
+species.myrmecology:Desert=Desert 
+species.myrmecology:Swamp=Swamp 
+species.myrmecology:Plains=Field 
+species.myrmecology:Stone=Amber 
+species.myrmecology:Common=Common  
+species.myrmecology:Mound=Mound 
+species.myrmecology:Barbaric=Barbaric 
+species.myrmecology:Plentiful=Plentiful 
+species.myrmecology:Cultivator=Cultivator 
+species.myrmecology:Carpenter=Carpenter 
+species.myrmecology:Leafcutter=Leafcutter 
+species.myrmecology:Scavenger=Scavenger 
+species.myrmecology:Planter=Planter 
+species.myrmecology:Sprouter=Sprouter 
+species.myrmecology:Harvester=Harvester 
+species.myrmecology:Rancher=Rancher 
+species.myrmecology:Red=Red 
+
 
 // Ant hills
 tile.myrmecology:antHillForest.name=Black Ant Hill

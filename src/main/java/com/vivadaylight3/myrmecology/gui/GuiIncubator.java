@@ -19,10 +19,10 @@ import com.vivadaylight3.myrmecology.util.Maths;
 
 public class GuiIncubator extends GuiContainer {
 
-    TileEntityIncubator tile;
-    int type = 0;
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.INCUBATOR);
+    TileEntityIncubator tile;
+    int type = 0;
 
     public GuiIncubator(final InventoryPlayer inventory,
 	    final TileEntityIncubator tileEntity) {
@@ -32,34 +32,11 @@ public class GuiIncubator extends GuiContainer {
     }
 
     @Override
-    public void initGui() {
-	super.initGui();
-	buttonList.add(new GuiButton(0, guiLeft + 8, guiTop + 45, 46, 20,
-		Ants.typeNames[type]));
-    }
-
-    public int toggleProductType() {
-	return (Maths.cyclicIncrement(type, 1, Ants.typeNames.length - 1));
-    }
-
-    @Override
     protected void actionPerformed(final GuiButton guibutton) {
 	type = toggleProductType();
 	ModNet.net.sendToServer(new PacketIncubator(tile.xCoord, tile.yCoord,
 		tile.zCoord, type));
 	((GuiButton) buttonList.get(0)).displayString = Ants.typeNames[type];
-    }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
-	    final int p_146979_2_) {
-	final String s = tile.getInventoryName();
-	fontRendererObj.drawString(s,
-		(xSize / 2) - (fontRendererObj.getStringWidth(s) / 2), 6,
-		4210752);
-	fontRendererObj.drawString(
-		I18n.format("container.inventory", new Object[0]), 8,
-		(ySize - 96) + 2, 4210752);
     }
 
     @Override
@@ -75,9 +52,31 @@ public class GuiIncubator extends GuiContainer {
 
 	if (time > 0) {
 	    final int progress = tile.getProgressScaled(24);
-	    drawTexturedModalRect(k + 31, l + 16, 176, 0, (progress + 1), 16);
+	    drawTexturedModalRect(k + 31, l + 16, 176, 0, progress + 1, 16);
 	}
 
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
+	    final int p_146979_2_) {
+	final String s = tile.getInventoryName();
+	fontRendererObj.drawString(s,
+		xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+	fontRendererObj.drawString(
+		I18n.format("container.inventory", new Object[0]), 8,
+		ySize - 96 + 2, 4210752);
+    }
+
+    @Override
+    public void initGui() {
+	super.initGui();
+	buttonList.add(new GuiButton(0, guiLeft + 8, guiTop + 45, 46, 20,
+		Ants.typeNames[type]));
+    }
+
+    public int toggleProductType() {
+	return Maths.cyclicIncrement(type, 1, Ants.typeNames.length - 1);
     }
 
 }

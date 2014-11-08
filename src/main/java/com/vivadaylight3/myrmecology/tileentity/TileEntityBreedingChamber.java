@@ -16,13 +16,61 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 
-    private static final int SLOT_QUEEN = 0;
-    private static final int SLOT_DRONE = 1;
     public static int rows = 3, cols = 5, progress = 0, targetTime = -1;
+    private static final int SLOT_DRONE = 1;
+    private static final int SLOT_QUEEN = 0;
 
     public TileEntityBreedingChamber() {
-	super(2 + (rows * cols), 64, Names
+	super(2 + rows * cols, 64, Names
 		.getLocalisedName(ModBlocks.breedingChamber));
+    }
+
+    @Override
+    public boolean canExtractItem(final int slot, final ItemStack stack,
+	    final int side) {
+	return slot > 1;
+    }
+
+    @Override
+    public boolean canInsertItem(final int slot, final ItemStack stack,
+	    final int side) {
+	if (slot < 2 && stack.getItem() instanceof ItemAnt) {
+	    if (slot == SLOT_QUEEN
+		    && Ants.getType(stack) == AntType.QUEEN.metadata) return true;
+	    if (slot == SLOT_DRONE
+		    && Ants.getType(stack) == AntType.DRONE.metadata) return true;
+	}
+	return false;
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(final int side) {
+	final BlockSide blockSide = BlockMyrmecology.getBlockSide(side,
+		worldObj.getBlockMetadata(xCoord, yCoord, zCoord), 0);
+	if (blockSide == BlockSide.TOP || blockSide == BlockSide.LEFT) return new int[] {
+		SLOT_QUEEN, SLOT_DRONE };
+	else {
+	    final int[] res = new int[getSizeInventory() - 2];
+	    for (int c = 2; c < getSizeInventory(); c++)
+		res[c - 2] = c;
+	    return res;
+	}
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getProgressScaled(final int scale) {
+	return progress * scale / targetTime;
+    }
+
+    @Override
+    public void readFromNBT(final NBTTagCompound tag) {
+	super.readFromNBT(tag);
+	progress = tag.getInteger("Progress");
+    }
+
+    private void reset() {
+	targetTime = -1;
+	progress = 0;
     }
 
     @Override
@@ -43,75 +91,18 @@ public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 				reset();
 			    }
 			}
-		    } else {
-			targetTime = Math.max(
-				Ants.getSpecies(queen).breedTicks,
-				Ants.getSpecies(drone).breedTicks);
-		    }
-		} else {
-		    reset();
-		}
-	    } else {
-		reset();
-	    }
-	} else {
-	    reset();
-	}
-    }
-
-    private void reset() {
-	targetTime = -1;
-	progress = 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int getProgressScaled(final int scale) {
-	return (progress * scale) / targetTime;
+		    } else targetTime = Math.max(
+			    Ants.getSpecies(queen).breedTicks,
+			    Ants.getSpecies(drone).breedTicks);
+		} else reset();
+	    } else reset();
+	} else reset();
     }
 
     @Override
     public void writeToNBT(final NBTTagCompound tag) {
 	super.writeToNBT(tag);
 	tag.setInteger("Progress", progress);
-    }
-
-    @Override
-    public void readFromNBT(final NBTTagCompound tag) {
-	super.readFromNBT(tag);
-	progress = tag.getInteger("Progress");
-    }
-
-    @Override
-    public int[] getAccessibleSlotsFromSide(final int side) {
-	final BlockSide blockSide = BlockMyrmecology.getBlockSide(side,
-		worldObj.getBlockMetadata(xCoord, yCoord, zCoord), 0);
-	if ((blockSide == BlockSide.TOP) || (blockSide == BlockSide.LEFT)) return new int[] {
-		SLOT_QUEEN, SLOT_DRONE };
-	else {
-	    final int[] res = new int[getSizeInventory() - 2];
-	    for (int c = 2; c < getSizeInventory(); c++) {
-		res[c - 2] = c;
-	    }
-	    return res;
-	}
-    }
-
-    @Override
-    public boolean canInsertItem(final int slot, final ItemStack stack,
-	    final int side) {
-	if ((slot < 2) && (stack.getItem() instanceof ItemAnt)) {
-	    if ((slot == SLOT_QUEEN)
-		    && (Ants.getType(stack) == AntType.QUEEN.val)) return true;
-	    if ((slot == SLOT_DRONE)
-		    && (Ants.getType(stack) == AntType.DRONE.val)) return true;
-	}
-	return false;
-    }
-
-    @Override
-    public boolean canExtractItem(final int slot, final ItemStack stack,
-	    final int side) {
-	return slot > 1;
     }
 
 }

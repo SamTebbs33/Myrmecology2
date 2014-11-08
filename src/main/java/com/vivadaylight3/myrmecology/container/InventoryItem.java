@@ -18,13 +18,7 @@ public class InventoryItem implements IInventory {
 	stack = item;
     }
 
-    public int getSizeInventory() {
-	return inventory.length;
-    }
-
-    public ItemStack getStackInSlot(final int slot) {
-	return inventory[slot];
-    }
+    public void closeInventory() {}
 
     public ItemStack decrStackSize(final int index, final int amount) {
 	if (inventory[index] != null) {
@@ -38,26 +32,11 @@ public class InventoryItem implements IInventory {
 	    } else {
 		itemstack = inventory[index].splitStack(amount);
 
-		if (inventory[index].stackSize == 0) {
-		    inventory[index] = null;
-		}
+		if (inventory[index].stackSize == 0) inventory[index] = null;
 		onInventoryChanged();
 		return itemstack;
 	    }
 	} else return null;
-    }
-
-    private void onInventoryChanged() {
-
-    }
-
-    public ItemStack getStackInSlotOnClosing(final int slot) {
-	return inventory[slot];
-    }
-
-    public void setInventorySlotContents(final int slot, final ItemStack stack) {
-	inventory[slot] = stack;
-
     }
 
     public String getInventoryName() {
@@ -65,29 +44,48 @@ public class InventoryItem implements IInventory {
 	return Names.getLocalisedName(ModItems.myrmopaedia);
     }
 
-    public boolean hasCustomInventoryName() {
-	// TODO Auto-generated method stub
-	return true;
-    }
-
     public int getInventoryStackLimit() {
 	// TODO Auto-generated method stub
 	return 1;
     }
 
-    public void markDirty() {}
+    public int getSizeInventory() {
+	return inventory.length;
+    }
+
+    public ItemStack getStackInSlot(final int slot) {
+	return inventory[slot];
+    }
+
+    public ItemStack getStackInSlotOnClosing(final int slot) {
+	return inventory[slot];
+    }
+
+    public boolean hasCustomInventoryName() {
+	// TODO Auto-generated method stub
+	return true;
+    }
+
+    public boolean isItemValidForSlot(final int slot, final ItemStack stack) {
+	return stack.getItem() instanceof ItemAnt;
+    }
 
     public boolean isUseableByPlayer(final EntityPlayer p_70300_1_) {
 	// TODO Auto-generated method stub
 	return true;
     }
 
+    public void markDirty() {}
+
+    private void onInventoryChanged() {
+
+    }
+
     public void openInventory() {}
 
-    public void closeInventory() {}
+    public void setInventorySlotContents(final int slot, final ItemStack stack) {
+	inventory[slot] = stack;
 
-    public boolean isItemValidForSlot(final int slot, final ItemStack stack) {
-	return stack.getItem() instanceof ItemAnt;
     }
 
 }

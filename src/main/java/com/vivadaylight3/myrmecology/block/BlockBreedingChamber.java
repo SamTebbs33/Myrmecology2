@@ -19,14 +19,14 @@ public class BlockBreedingChamber extends BlockMyrmecology {
     }
 
     @Override
-    public boolean renderAsNormalBlock() {
-	return true;
-    }
-
-    @Override
     public TileEntity createTileEntity(final World world, final int metadata) {
 	// TODO Auto-generated method stub
 	return new TileEntityBreedingChamber();
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+	return true;
     }
 
 }

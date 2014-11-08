@@ -20,10 +20,10 @@ public class BlockFormicarium extends BlockMyrmecology {
 	this.setHarvestLevel("pickaxe", 1);
 	guiID = Reference.GUI_ID_FORMICARIUM;
     }
-    
+
     @Override
-    public boolean renderAsNormalBlock() {
-	return true;
+    public TileEntity createTileEntity(final World world, final int metadata) {
+	return new TileEntityFormicarium();
     }
 
     @Override
@@ -33,8 +33,8 @@ public class BlockFormicarium extends BlockMyrmecology {
     }
 
     @Override
-    public TileEntity createTileEntity(final World world, final int metadata) {
-	return new TileEntityFormicarium();
+    public boolean renderAsNormalBlock() {
+	return true;
     }
 
 }

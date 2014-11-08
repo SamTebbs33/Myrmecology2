@@ -25,16 +25,14 @@ public class ContainerMyrmopaedia extends ContainerMyrmecology {
     protected void addPlayerSlots(final InventoryPlayer inv) {
 	int c = 0;
 	for (int x = 0; x < 9; x++) {
-	    addSlotToContainer(new Slot(inv, c, 18 + (x * 18), 231));
+	    addSlotToContainer(new Slot(inv, c, 18 + x * 18, 231));
 	    c++;
 	}
-	for (int y = 0; y < 3; y++) {
+	for (int y = 0; y < 3; y++)
 	    for (int x = 0; x < 9; x++) {
-		addSlotToContainer(new Slot(inv, c, 18 + (x * 18),
-			169 + (y * 18)));
+		addSlotToContainer(new Slot(inv, c, 18 + x * 18, 169 + y * 18));
 		c++;
 	    }
-	}
 	latestSlotID = c;
     }
 
@@ -42,14 +40,26 @@ public class ContainerMyrmopaedia extends ContainerMyrmecology {
     public boolean canInteractWith(final EntityPlayer p_75145_1_) {
 	return true;
     }
-    
+
+    @Override
+    public void onContainerClosed(final EntityPlayer player) {
+	super.onContainerClosed(player);
+
+	if (!world.isRemote) for (int i = 0; i < inventory.getSizeInventory(); i++) {
+	    final ItemStack itemstack = inventory.getStackInSlotOnClosing(i);
+
+	    if (itemstack != null) player.dropPlayerItemWithRandomChoice(
+		    itemstack, false);
+	}
+    }
+
     @Override
     public ItemStack transferStackInSlot(final EntityPlayer player,
 	    final int slotID) {
 	ItemStack stack = null;
 	final Slot slot = (Slot) inventorySlots.get(slotID);
 
-	if ((slot != null) && slot.getHasStack()) {
+	if (slot != null && slot.getHasStack()) {
 	    final ItemStack slotStack = slot.getStack();
 	    stack = slotStack.copy();
 
@@ -60,30 +70,11 @@ public class ContainerMyrmopaedia extends ContainerMyrmecology {
 	    } else if (!mergeItemStack(slotStack, 0,
 		    ((IInventory) inventory).getSizeInventory(), false)) return null;
 
-	    if (slotStack.stackSize == 0) {
-		slot.putStack((ItemStack) null);
-	    } else {
-		slot.onSlotChanged();
-	    }
+	    if (slotStack.stackSize == 0) slot.putStack((ItemStack) null);
+	    else slot.onSlotChanged();
 	}
 
 	return stack;
-    }
-
-    @Override
-    public void onContainerClosed(final EntityPlayer player) {
-	super.onContainerClosed(player);
-
-	if (!world.isRemote) {
-	    for (int i = 0; i < inventory.getSizeInventory(); i++) {
-		final ItemStack itemstack = inventory
-			.getStackInSlotOnClosing(i);
-
-		if (itemstack != null) {
-		    player.dropPlayerItemWithRandomChoice(itemstack, false);
-		}
-	    }
-	}
     }
 
 }

@@ -21,8 +21,8 @@ import com.vivadaylight3.myrmecology.util.Maths;
 
 public class BlockAntHill extends BlockMyrmecologyNonContainer {
 
-    public AntSpecies species;
     public static ArrayList<BlockAntHill> hills = new ArrayList<BlockAntHill>();
+    public AntSpecies species;
 
     public BlockAntHill(final AntSpecies species) {
 	super(Material.ground);
@@ -37,24 +37,13 @@ public class BlockAntHill extends BlockMyrmecologyNonContainer {
 	setHardness(0.5f);
     }
 
-    public BiomeGenBase[] getBiomes() {
-	return species.biomes;
-    }
+    @Override
+    public boolean canHarvestBlock(final EntityPlayer player, final int meta) {
 
-    public boolean generate(final Coordinate coord, final BiomeGenBase biome,
-	    final Random rand) {
-	final Block blockUnder = coord.world
-		.getBlock(coord.x, coord.y, coord.z);
-	if ((blockUnder != Blocks.water)
-		&& (blockUnder != Blocks.flowing_water)) {
-	    if ((getBiomes() == null)
-		    || Arrays.asList(getBiomes()).contains(biome)) {
-		if (Maths.chance(10 + species.hillRarity)) {
-		    coord.world.setBlock(coord.x, coord.y, coord.z, this);
-		    return true;
-		}
-	    }
-	}
+	final ItemStack tool = player.getCurrentEquippedItem();
+
+	if (tool != null) if (tool.getItem() instanceof ItemExtractor) return true;
+
 	return false;
     }
 
@@ -66,18 +55,21 @@ public class BlockAntHill extends BlockMyrmecologyNonContainer {
 
     }
 
-    @Override
-    public boolean canHarvestBlock(final EntityPlayer player, final int meta) {
-
-	final ItemStack tool = player.getCurrentEquippedItem();
-
-	if (tool != null) {
-
-	    if (tool.getItem() instanceof ItemExtractor) return true;
-
+    public boolean generate(final Coordinate coord, final BiomeGenBase biome,
+	    final Random rand) {
+	final Block blockUnder = coord.world
+		.getBlock(coord.x, coord.y, coord.z);
+	if (blockUnder != Blocks.water && blockUnder != Blocks.flowing_water) if (getBiomes() == null
+		|| Arrays.asList(getBiomes()).contains(biome)) if (Maths
+		.chance(10 + species.hillRarity)) {
+	    coord.world.setBlock(coord.x, coord.y, coord.z, this);
+	    return true;
 	}
-
 	return false;
+    }
+
+    public BiomeGenBase[] getBiomes() {
+	return species.biomes;
     }
 
     @Override

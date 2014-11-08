@@ -14,27 +14,15 @@ import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 
 public class GuiBreedingChamber extends GuiContainer {
 
-    TileEntityBreedingChamber tile;
-    int type = 0;
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.BREEDINGCHAMBER);
+    TileEntityBreedingChamber tile;
+    int type = 0;
 
     public GuiBreedingChamber(final InventoryPlayer inventory,
 	    final TileEntityBreedingChamber tileEntity) {
 	super(new ContainerBreedingChamber(inventory, tileEntity));
 	tile = tileEntity;
-    }
-
-    @Override
-    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
-	    final int p_146979_2_) {
-	final String s = tile.getInventoryName();
-	fontRendererObj.drawString(s,
-		(xSize / 2) - (fontRendererObj.getStringWidth(s) / 2), 6,
-		4210752);
-	fontRendererObj.drawString(
-		I18n.format("container.inventory", new Object[0]), 8,
-		(ySize - 96) + 2, 4210752);
     }
 
     @Override
@@ -49,9 +37,20 @@ public class GuiBreedingChamber extends GuiContainer {
 	final float time = TileEntityBreedingChamber.progress;
 	if (time > 0) {
 	    final int progress = tile.getProgressScaled(13);
-	    drawTexturedModalRect(k + 29, l + 36, 176, 0, (progress + 1), 16);
+	    drawTexturedModalRect(k + 29, l + 36, 176, 0, progress + 1, 16);
 	}
 
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(final int p_146979_1_,
+	    final int p_146979_2_) {
+	final String s = tile.getInventoryName();
+	fontRendererObj.drawString(s,
+		xSize / 2 - fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+	fontRendererObj.drawString(
+		I18n.format("container.inventory", new Object[0]), 8,
+		ySize - 96 + 2, 4210752);
     }
 
 }

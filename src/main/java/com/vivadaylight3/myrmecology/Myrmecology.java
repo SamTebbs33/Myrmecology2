@@ -1,5 +1,6 @@
 package com.vivadaylight3.myrmecology;
 
+import com.vivadaylight3.myrmecology.ant.Ants;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.init.ModNet;
@@ -8,6 +9,7 @@ import com.vivadaylight3.myrmecology.init.ModTileEntities;
 import com.vivadaylight3.myrmecology.proxy.IProxy;
 import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.util.Log;
+import com.vivadaylight3.myrmecology.util.Plantable;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -28,6 +30,28 @@ public class Myrmecology {
     public static IProxy proxy;
 
     /**
+     * GUIs, tile entities, recipes and event handlers
+     * 
+     * @param event
+     */
+    @EventHandler
+    public void init(final FMLInitializationEvent event) {
+	Log.info("Init");
+	ModRecipes.init();
+	Ants.initRecipes();
+    }
+
+    /**
+     * Compatibility
+     * 
+     * @param event
+     */
+    @EventHandler
+    public void postInit(final FMLPostInitializationEvent event) {
+	Log.info("Post init");
+    }
+
+    /**
      * Network handling, items and blocks
      * 
      * @param event
@@ -44,28 +68,8 @@ public class Myrmecology {
 	ModItems.init();
 	ModTileEntities.init();
 	ModNet.init();
+	Plantable.init();
 	GameRegistry.registerWorldGenerator(new WorldGenHandler(), 10);
-    }
-
-    /**
-     * GUIs, tile entities, recipes and event handlers
-     * 
-     * @param event
-     */
-    @EventHandler
-    public void init(final FMLInitializationEvent event) {
-	Log.info("Init");
-	ModRecipes.init();
-    }
-
-    /**
-     * Compatibility
-     * 
-     * @param event
-     */
-    @EventHandler
-    public void postInit(final FMLPostInitializationEvent event) {
-	Log.info("Post init");
     }
 
 }

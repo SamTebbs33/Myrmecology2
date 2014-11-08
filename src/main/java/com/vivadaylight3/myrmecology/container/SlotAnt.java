@@ -21,11 +21,8 @@ public class SlotAnt extends Slot {
     @Override
     public boolean isItemValid(final ItemStack stack) {
 	// TODO Auto-generated method stub
-	if (stack.getItem() instanceof ItemAnt) {
-	    for (final Ants.AntType type : types) {
-		if (type.val == Ants.getType(stack)) return true;
-	    }
-	}
+	if (stack.getItem() instanceof ItemAnt) for (final Ants.AntType type : types)
+	    if (type.metadata == Ants.getType(stack)) return true;
 	return false;
     }
 

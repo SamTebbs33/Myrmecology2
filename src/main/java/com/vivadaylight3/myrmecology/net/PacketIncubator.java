@@ -33,13 +33,6 @@ public class PacketIncubator implements IMessage,
 	message = buf.readInt();
     }
 
-    public void toBytes(final ByteBuf buf) {
-	buf.writeInt(x);
-	buf.writeInt(y);
-	buf.writeInt(z);
-	buf.writeInt(message);
-    }
-
     public IMessage onMessage(final PacketIncubator message,
 	    final MessageContext ctx) {
 	final TileEntity tile = ctx.getServerHandler().playerEntity.worldObj
@@ -51,6 +44,13 @@ public class PacketIncubator implements IMessage,
 		    message.x, message.y, message.z);
 	}
 	return null;
+    }
+
+    public void toBytes(final ByteBuf buf) {
+	buf.writeInt(x);
+	buf.writeInt(y);
+	buf.writeInt(z);
+	buf.writeInt(message);
     }
 
 }

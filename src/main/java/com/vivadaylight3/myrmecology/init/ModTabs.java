@@ -22,17 +22,17 @@ public class ModTabs {
 	    return true;
 	}
 
-    }, ants = new CreativeTabs(Reference.MOD_ID+"Ants"){
+    }, ants = new CreativeTabs(Reference.MOD_ID + "Ants") {
+	@Override
+	public int func_151243_f() {
+	    // TODO Auto-generated method stub
+	    return Ants.AntType.QUEEN.metadata;
+	}
+
 	@Override
 	public Item getTabIconItem() {
 	    // TODO Auto-generated method stub
 	    return ModItems.ant;
-	}
-
-	@Override
-	public int func_151243_f() {
-	    // TODO Auto-generated method stub
-	    return Ants.AntType.QUEEN.val;
 	}
 
 	@Override

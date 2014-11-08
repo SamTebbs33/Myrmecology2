@@ -11,24 +11,22 @@ public class Log {
 
     public static boolean debug = true;
 
+    public static void debug(final Object obj) {
+	if (debug) log(Level.DEBUG, obj);
+    }
+
+    public static void info(final Object obj) {
+	log(Level.INFO, obj);
+    }
+
     public static void log(final org.apache.logging.log4j.Level level,
 	    final Object obj) {
 	FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
     }
 
-    public static void debug(final Object obj) {
-	if (debug) {
-	    log(Level.DEBUG, obj);
-	}
-    }
-
     public static void player(final String str) {
 	FMLClientHandler.instance().getClientPlayerEntity()
 		.sendChatMessage(str);
-    }
-
-    public static void info(final Object obj) {
-	log(Level.INFO, obj);
     }
 
     public static void warn(final Object obj) {

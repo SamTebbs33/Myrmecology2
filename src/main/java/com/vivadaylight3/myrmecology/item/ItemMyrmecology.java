@@ -23,25 +23,14 @@ public class ItemMyrmecology extends Item {
 	setUnlocalizedName(name);
     }
 
-    private String getTexturePath() {
-	return Reference.MOD_ID + ":" + name;
-    }
-
     @Override
     public void addInformation(final ItemStack par1ItemStack,
 	    final EntityPlayer par2EntityPlayer, final List par3List,
 	    final boolean par4) {
 	final String info = StatCollector.translateToLocal(this
 		.getUnlocalizedName() + ".desc");
-	if (!info.equals("") && !info.equals(getUnlocalizedName() + ".desc")) {
-	    par3List.add(info);
-	}
-    }
-
-    @Override
-    public String getItemStackDisplayName(final ItemStack p_77653_1_) {
-	return StatCollector.translateToLocal(this.getUnlocalizedName()
-		+ ".name");
+	if (!info.equals("") && !info.equals(getUnlocalizedName() + ".desc")) par3List
+		.add(info);
     }
 
     private String getClassName() {
@@ -53,13 +42,23 @@ public class ItemMyrmecology extends Item {
     }
 
     @Override
-    public void registerIcons(final IIconRegister reg) {
-	itemIcon = reg.registerIcon(getTexturePath());
+    public String getItemStackDisplayName(final ItemStack p_77653_1_) {
+	return StatCollector.translateToLocal(this.getUnlocalizedName()
+		+ ".name");
+    }
+
+    private String getTexturePath() {
+	return Reference.MOD_ID + ":" + name;
     }
 
     @Override
     public String getUnlocalizedName() {
 	return "item." + getTexturePath();
+    }
+
+    @Override
+    public void registerIcons(final IIconRegister reg) {
+	itemIcon = reg.registerIcon(getTexturePath());
     }
 
 }
