@@ -12,4 +12,4 @@
 hs_err_pid*
 
 # Custom extensions
-.ign # Used for ignored files
+*.ign # Used for ignored files
