@@ -17,8 +17,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 
     public static int rows = 3, cols = 5, progress = 0, targetTime = -1;
-    private static final int SLOT_DRONE = 1;
-    private static final int SLOT_QUEEN = 0;
+    public static final int SLOT_DRONE = 1;
+    public static final int SLOT_QUEEN = 0;
 
     public TileEntityBreedingChamber() {
 	super(2 + rows * cols, 64, Names

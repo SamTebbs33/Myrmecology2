@@ -29,8 +29,10 @@ public class ItemMyrmecologyBook extends ItemMyrmecology {
 	    final int par7, final float par8, final float par9,
 	    final float par10) {
 
-	if (!world.isRemote && !player.isSneaking()) player.openGui(
+	if (!world.isRemote && !player.isSneaking()){ 
+	    player.openGui(
 		Myrmecology.instance, Reference.GUI_ID_BOOK, world, x, y, z);
+	    }
 
 	return true;
 

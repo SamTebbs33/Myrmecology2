@@ -17,6 +17,7 @@ public class ModRecipes {
 		" di", 's', new ItemStack(Items.iron_shovel), 'i',
 		new ItemStack(Items.iron_ingot), 'd', new ItemStack(Items.dye,
 			1, 2));
+	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.book), new ItemStack(Items.book), new ItemStack(Items.dye, 1, 4));
 	// Blocks
 	GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt, 2, 2),
 		new ItemStack(Items.dye, 1, 15),

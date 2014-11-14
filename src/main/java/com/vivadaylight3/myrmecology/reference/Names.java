@@ -9,7 +9,7 @@ public class Names {
 
     public static final String INCUBATOR = "incubator",
 	    BREEDINGCHAMBER = "breedingChamber", FORMICARIUM = "formicarium",
-	    MYRMOPAEDIA = "myrmopaedia";
+	    MYRMOPAEDIA = "myrmopaedia", BOOK = "myrmecologyBook";
 
     public static String getLocalisedName(final Block block) {
 	return StatCollector.translateToLocal(block.getUnlocalizedName()

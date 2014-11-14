@@ -1,9 +1,14 @@
 package com.vivadaylight3.myrmecology.container;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.ant.Ants.AntType;
+import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 
 public class ContainerBreedingChamber extends ContainerMyrmecology {
@@ -28,6 +33,29 @@ public class ContainerBreedingChamber extends ContainerMyrmecology {
 			+ y * 18, Ants.AntType.LARVA));
 		c++;
 	    }
+    }
+    
+    @Override
+    public ItemStack transferStackInSlot(final EntityPlayer player,
+	    final int slotID) {
+	ItemStack stack = null;
+	final Slot slot = (Slot) inventorySlots.get(slotID);
+
+	if (slot != null && slot.getHasStack()) {
+	    final ItemStack slotStack = slot.getStack();
+	    stack = slotStack.copy();
+	    if (slotID < ((IInventory) tile).getSizeInventory()) {
+		if (!mergeItemStack(slotStack,
+			((IInventory) tile).getSizeInventory(),
+			inventorySlots.size(), true)) return null;
+	    } else if (!mergeItemStack(slotStack, 0,
+		    ((IInventory) tile).getSizeInventory(), false)) return null;
+
+	    if (slotStack.stackSize == 0) slot.putStack((ItemStack) null);
+	    else slot.onSlotChanged();
+	}
+
+	return stack;
     }
 
 }

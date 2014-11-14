@@ -38,13 +38,6 @@ public class AntSpecies {
 	AntSpecies.species.add(this);
     }
 
-    public AntSpecies(final int colourOutside, final int colourInside,
-	    final String speciesName, final String binomialName,
-	    final boolean makesCommonAnt, final BiomeGenBase... biomes) {
-	this(colourOutside, colourInside, speciesName, binomialName, biomes);
-	this.makesCommonAnt = makesCommonAnt;
-    }
-
     public AntSpecies addBreedingRecipe(final AntSpecies drone,
 	    final AntSpecies queen) {
 	final AntBreedingRecipe recipe = new AntBreedingRecipe(drone, queen,
@@ -136,6 +129,11 @@ public class AntSpecies {
 	int rand = 64 - strength;
 	rand = rand < 0 ? 0 : rand;
 	if (Maths.chance(rand)) doFormicariumBehaviour(coord, strength, tile);
+    }
+    
+    public AntSpecies setMakesCommonAnt(boolean b){
+	this.makesCommonAnt = b;
+	return this;
     }
 
 }
