@@ -3,7 +3,6 @@ package com.vivadaylight3.myrmecology.tileentity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.MinecraftForge;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
@@ -104,7 +103,8 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 			    if (progress >= targetTime) {
 				addItemStackToInventory(product);
 				decrStackSize(0, 1);
-				MEventHandler.post(new AntIncubationEvent.AntFinishIncubationEvent(
+				MEventHandler
+					.post(new AntIncubationEvent.AntFinishIncubationEvent(
 						larva, product, this,
 						targetTime));
 				reset();
@@ -114,7 +114,8 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 			progress = 0;
 			targetTime = Ants.getSpecies(larva).matureTicks;
 			meta = larva.getItemDamage();
-			MEventHandler.post(new AntIncubationEvent.AntStartIncubationEvent(
+			MEventHandler
+				.post(new AntIncubationEvent.AntStartIncubationEvent(
 					larva, getProduct(larva), this,
 					targetTime));
 		    }

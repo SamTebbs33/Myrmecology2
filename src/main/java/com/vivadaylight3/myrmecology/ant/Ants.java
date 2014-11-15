@@ -338,12 +338,17 @@ public class Ants {
 		.setHillAnt(false).setMakesCommonAnt(false);
 
     }
-    
-    public static void init(){
+
+    public static void init() {
 	Log.info("Init Ants");
-	for(AntSpecies species : AntSpecies.species){
-	    species.behaviourEnabled = ConfigUtil.config.getBoolean("behaviour."+species.speciesName+".enabled", Configuration.CATEGORY_GENERAL, true, "");
-	}
+	for (final AntSpecies species : AntSpecies.species)
+	    if (species.hasBehaviour) {
+		species.behaviourEnabled = ConfigUtil.config.getBoolean(
+			"behaviour." + species.speciesName + ".enabled",
+			Configuration.CATEGORY_GENERAL, true, "");
+		Log.info((species.behaviourEnabled ? "Enabled " : "Disabled ")
+			+ species.speciesName + " behaviour");
+	    }
     }
 
     private static ItemStack getBreedingResult(final AntSpecies ant1,

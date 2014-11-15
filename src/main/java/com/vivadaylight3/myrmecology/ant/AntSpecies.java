@@ -136,7 +136,10 @@ public class AntSpecies {
 	if (Maths.chance(rand)) {
 	    final Event e = new FormicariumBehaviourEvent(this, tile, strength);
 	    MinecraftForge.EVENT_BUS.post(e);
-	    if (!e.isCanceled()) doFormicariumBehaviour(coord, strength, tile);
+	    if (!e.isCanceled()) {
+		doFormicariumBehaviour(coord, strength, tile);
+		if (Maths.chance(20)) tile.decreaseSpeciesStack(this);
+	    }
 	}
     }
 

@@ -2,7 +2,6 @@ package com.vivadaylight3.myrmecology.tileentity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
 
 import com.vivadaylight3.myrmecology.ant.Ants;
 import com.vivadaylight3.myrmecology.ant.Ants.AntType;
@@ -91,11 +90,13 @@ public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 				addItemStackToInventory(product);
 				decrStackSize(SLOT_QUEEN, 1);
 				decrStackSize(SLOT_DRONE, 1);
-				MEventHandler.post(new AntBreedEvent.AntFinishBreedEvent(
+				MEventHandler
+					.post(new AntBreedEvent.AntFinishBreedEvent(
 						drone, queen, product, this,
 						targetTime));
 				reset();
-				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+				worldObj.markBlockForUpdate(xCoord, yCoord,
+					zCoord);
 			    }
 			}
 		    } else {

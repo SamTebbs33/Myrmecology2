@@ -33,7 +33,7 @@ public class Myrmecology {
 
     @SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
     public static IProxy proxy;
-    
+
     /**
      * Network handling, items and blocks
      * 

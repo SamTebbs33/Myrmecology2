@@ -1,10 +1,11 @@
 package com.vivadaylight3.myrmecology.init;
 
-import com.vivadaylight3.myrmecology.util.Log;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import com.vivadaylight3.myrmecology.util.Log;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModRecipes {

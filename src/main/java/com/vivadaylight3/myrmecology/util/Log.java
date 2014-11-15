@@ -21,14 +21,14 @@ public class Log {
 	log(Level.INFO, obj);
     }
 
-    public static void log(final Level level,
-	    final Object obj) {
+    public static void log(final Level level, final Object obj) {
 	FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
     }
 
     public static void player(final String str) {
-	EntityClientPlayerMP player = FMLClientHandler.instance().getClientPlayerEntity();
-	if(player != null) player.sendChatMessage(str);
+	final EntityClientPlayerMP player = FMLClientHandler.instance()
+		.getClientPlayerEntity();
+	if (player != null) player.sendChatMessage(str);
     }
 
     public static void warn(final Object obj) {
