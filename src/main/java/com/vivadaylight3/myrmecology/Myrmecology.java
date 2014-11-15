@@ -1,6 +1,10 @@
 package com.vivadaylight3.myrmecology;
 
+import net.minecraftforge.common.MinecraftForge;
+
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.handler.MEventHandler;
+import com.vivadaylight3.myrmecology.handler.MWorldGenHandler;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.init.ModNet;
@@ -45,7 +49,8 @@ public class Myrmecology {
 	ModTileEntities.init();
 	ModNet.init();
 	Plantable.init();
-	GameRegistry.registerWorldGenerator(new WorldGenHandler(), 10);
+	GameRegistry.registerWorldGenerator(new MWorldGenHandler(), 10);
+	MinecraftForge.EVENT_BUS.register(new MEventHandler());
     }
 
     /**

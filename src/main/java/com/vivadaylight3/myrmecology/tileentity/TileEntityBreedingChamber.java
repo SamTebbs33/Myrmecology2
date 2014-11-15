@@ -9,6 +9,7 @@ import com.vivadaylight3.myrmecology.ant.Ants.AntType;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology.BlockSide;
 import com.vivadaylight3.myrmecology.event.AntBreedEvent;
+import com.vivadaylight3.myrmecology.handler.MEventHandler;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.reference.Names;
@@ -90,18 +91,18 @@ public class TileEntityBreedingChamber extends TileEntityMyrmecology {
 				addItemStackToInventory(product);
 				decrStackSize(SLOT_QUEEN, 1);
 				decrStackSize(SLOT_DRONE, 1);
-				MinecraftForge.EVENT_BUS
-					.post(new AntBreedEvent.AntFinishBreedEvent(
+				MEventHandler.post(new AntBreedEvent.AntFinishBreedEvent(
 						drone, queen, product, this,
 						targetTime));
 				reset();
+				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			    }
 			}
 		    } else {
 			targetTime = Math.max(
 				Ants.getSpecies(queen).breedTicks,
 				Ants.getSpecies(drone).breedTicks);
-			MinecraftForge.EVENT_BUS
+			MEventHandler
 				.post(new AntBreedEvent.AntStartBreedEvent(
 					drone, queen, null, this, targetTime));
 		    }

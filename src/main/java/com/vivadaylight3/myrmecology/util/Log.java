@@ -1,5 +1,7 @@
 package com.vivadaylight3.myrmecology.util;
 
+import net.minecraft.client.entity.EntityClientPlayerMP;
+
 import org.apache.logging.log4j.Level;
 
 import com.vivadaylight3.myrmecology.reference.Reference;
@@ -25,8 +27,8 @@ public class Log {
     }
 
     public static void player(final String str) {
-	FMLClientHandler.instance().getClientPlayerEntity()
-		.sendChatMessage(str);
+	EntityClientPlayerMP player = FMLClientHandler.instance().getClientPlayerEntity();
+	if(player != null) player.sendChatMessage(str);
     }
 
     public static void warn(final Object obj) {

@@ -1,4 +1,4 @@
-package com.vivadaylight3.myrmecology;
+package com.vivadaylight3.myrmecology.handler;
 
 import java.util.Random;
 
@@ -11,9 +11,9 @@ import com.vivadaylight3.myrmecology.util.Coordinate;
 
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class WorldGenHandler implements IWorldGenerator {
+public class MWorldGenHandler implements IWorldGenerator {
 
-    public WorldGenHandler() {
+    public MWorldGenHandler() {
 	// TODO Auto-generated constructor stub
     }
 

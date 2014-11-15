@@ -78,11 +78,6 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
 
     @Override
     protected void onInventoryChanged() {
-	/*
-	 * boolean s = false; for(int slot : changedSlots){ for(int workerSlot :
-	 * slotsWorkers){ if(slot == workerSlot){ s = true; break; } } if(s)
-	 * break; } if(!s) return;
-	 */
 	speciesMap.clear();
 	slotsSymbiosis = new int[slotsSymbiosis.length];
 	for (final int slot : slotsWorkers)

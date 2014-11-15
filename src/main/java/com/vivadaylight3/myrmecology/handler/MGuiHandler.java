@@ -1,4 +1,4 @@
-package com.vivadaylight3.myrmecology;
+package com.vivadaylight3.myrmecology.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -22,7 +22,7 @@ import com.vivadaylight3.myrmecology.tileentity.TileEntityIncubator;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 
-public class GuiHandler implements IGuiHandler {
+public class MGuiHandler implements IGuiHandler {
 
     public Object getClientGuiElement(final int ID, final EntityPlayer player,
 	    final World world, final int x, final int y, final int z) {
