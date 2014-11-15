@@ -1,5 +1,9 @@
 *.class
 
+# Minecraft Forge and Gradle
+.gradle
+gradle*
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
