@@ -2,8 +2,33 @@
 build
 
 # Minecraft Forge and Gradle
-.gradle
+/.gradle
+/build/
 gradle*
+
+# OS-Generated files
+*/.DS_Store
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/eclipse/
+/debug/
+*.lock
+/.metadata/
+/config/
+/logs/
+options.txt
+/saves/
+/out
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
