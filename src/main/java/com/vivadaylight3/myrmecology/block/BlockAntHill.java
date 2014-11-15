@@ -1,6 +1,7 @@
 package com.vivadaylight3.myrmecology.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -10,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import scala.actors.threadpool.Arrays;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;

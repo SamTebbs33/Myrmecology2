@@ -8,5 +8,4 @@ public class Reference {
 	    MOD_NAME = "Myrmecology", MOD_VERSION = "@VERSION@",
 	    PROXY_CLIENT = "com.vivadaylight3.myrmecology.proxy.ClientProxy",
 	    PROXY_SERVER = "com.vivadaylight3.myrmecology.proxy.ServerProxy";
-
 }

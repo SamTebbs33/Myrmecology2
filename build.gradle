@@ -19,7 +19,17 @@ apply plugin: 'forge'
 
 version = "1.7.10-0.1"
 group= "com.vivadaylight3.myrmecology" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "myrmecology"
+archivesBaseName = "Myrmecology"
+
+sourceSets.main{
+	java{
+		srcDirs 'src/main/java'
+	}
+	
+	resources{
+		srcDirs 'resources'
+	}
+}
 
 minecraft {
     version = "1.7.10-10.13.2.1230"
