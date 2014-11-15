@@ -3,11 +3,13 @@ package com.vivadaylight3.myrmecology.tileentity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology.BlockSide;
+import com.vivadaylight3.myrmecology.event.AntIncubationEvent;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
@@ -97,9 +99,14 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 		    if (meta == larva.getItemDamage()) {
 			if (inventoryCanHold(getProduct(larva))) {
 			    progress++;
+			    final ItemStack product = getProduct(larva);
 			    if (progress >= targetTime) {
-				addItemStackToInventory(getProduct(larva));
+				addItemStackToInventory(product);
 				decrStackSize(0, 1);
+				MinecraftForge.EVENT_BUS
+					.post(new AntIncubationEvent.AntFinishIncubationEvent(
+						larva, product, this,
+						targetTime));
 				reset();
 			    }
 			}
@@ -107,6 +114,10 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 			progress = 0;
 			targetTime = Ants.getSpecies(larva).matureTicks;
 			meta = larva.getItemDamage();
+			MinecraftForge.EVENT_BUS
+				.post(new AntIncubationEvent.AntStartIncubationEvent(
+					larva, getProduct(larva), this,
+					targetTime));
 		    }
 		} else reset();
 	    } else reset();

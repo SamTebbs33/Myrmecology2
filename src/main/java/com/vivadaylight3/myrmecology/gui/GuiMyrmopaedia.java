@@ -22,8 +22,7 @@ import com.vivadaylight3.myrmecology.util.Time;
 public class GuiMyrmopaedia extends GuiContainer {
 
     private static final String[] buttons = { "Info", "Breeding" };
-    private final int buttonHeight = 16,
-	    buttonSpacing = 2;
+    private final int buttonHeight = 16, buttonSpacing = 2;
     private static final int screenInfo = 0, screenBreeding = 1;
     public static final ResourceLocation texture = Resources
 	    .getGuiResource(Names.MYRMOPAEDIA);
@@ -97,7 +96,7 @@ public class GuiMyrmopaedia extends GuiContainer {
     public void initGui() {
 	super.initGui();
 	int id = 0;
-	int buttonX = guiLeft + 38, buttonY = guiTop + 147;
+	final int buttonX = guiLeft + 38, buttonY = guiTop + 147;
 	int lastX = buttonX - buttonSpacing;
 	for (final String button : buttons) {
 	    final int width = button.length() * 6 + buttonSpacing * 2;

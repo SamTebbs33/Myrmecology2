@@ -7,6 +7,7 @@ import com.vivadaylight3.myrmecology.block.BlockFormicarium;
 import com.vivadaylight3.myrmecology.block.BlockIncubator;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology;
 import com.vivadaylight3.myrmecology.reference.Reference;
+import com.vivadaylight3.myrmecology.util.Log;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -21,6 +22,7 @@ public class ModBlocks {
     }
 
     public static void init() {
+	Log.info("Init ModBlocks");
 	breedingChamber = new BlockBreedingChamber();
 	incubator = new BlockIncubator();
 	formicarium = new BlockFormicarium();

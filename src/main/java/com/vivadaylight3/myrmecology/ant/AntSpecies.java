@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
 
+import com.vivadaylight3.myrmecology.event.FormicariumBehaviourEvent;
 import com.vivadaylight3.myrmecology.reference.Reference;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.Maths;
 import com.vivadaylight3.myrmecology.util.Time;
+
+import cpw.mods.fml.common.eventhandler.Event;
 
 public class AntSpecies {
 
@@ -26,6 +30,7 @@ public class AntSpecies {
 	    fertilityMinus = 0, hillRarity = 1;
     public String speciesName = "Default", binomialName = "Antus Defaultus",
 	    behaviourDesc = "";
+    public boolean behaviourEnabled = true;
 
     public AntSpecies(final int colourOutside, final int colourInside,
 	    final String speciesName, final String binomialName,
@@ -128,11 +133,15 @@ public class AntSpecies {
 	    final int strength, final TileEntityFormicarium tile) {
 	int rand = 64 - strength;
 	rand = rand < 0 ? 0 : rand;
-	if (Maths.chance(rand)) doFormicariumBehaviour(coord, strength, tile);
+	if (Maths.chance(rand)) {
+	    final Event e = new FormicariumBehaviourEvent(this, tile, strength);
+	    MinecraftForge.EVENT_BUS.post(e);
+	    if (!e.isCanceled()) doFormicariumBehaviour(coord, strength, tile);
+	}
     }
-    
-    public AntSpecies setMakesCommonAnt(boolean b){
-	this.makesCommonAnt = b;
+
+    public AntSpecies setMakesCommonAnt(final boolean b) {
+	makesCommonAnt = b;
 	return this;
     }
 

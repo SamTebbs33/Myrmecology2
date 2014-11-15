@@ -11,21 +11,21 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.config.Configuration;
 import akka.japi.Pair;
 
 import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
+import com.vivadaylight3.myrmecology.util.ConfigUtil;
 import com.vivadaylight3.myrmecology.util.Coordinate;
 import com.vivadaylight3.myrmecology.util.InventoryUtil;
+import com.vivadaylight3.myrmecology.util.Log;
 import com.vivadaylight3.myrmecology.util.OreDictUtil;
 import com.vivadaylight3.myrmecology.util.Plantable;
 import com.vivadaylight3.myrmecology.util.WorldUtil;
@@ -65,25 +65,28 @@ public class Ants {
 		"Formicidae Lapidus");
 	jungle = new AntSpecies(0x3D0000, 0x790000, "Jungle", "Formica Rufa",
 		BiomeGenBase.jungle);
-	common = new AntSpecies(0x3F2A17, 0x684526, "Common", "Antus Communus").setMakesCommonAnt(false).setHillAnt(false);
-	
+	common = new AntSpecies(0x3F2A17, 0x684526, "Common", "Antus Communus")
+		.setMakesCommonAnt(false).setHillAnt(false);
+
 	// Tier 2
 	x = new AntSpecies(0x967C5E, 0xC7B299, "Mound",
-		"Pogonomyrmex Occidentalis").setMakesCommonAnt(false).addBreedingRecipe(common,
-		forest).setHillAnt(false);
+		"Pogonomyrmex Occidentalis").setMakesCommonAnt(false)
+		.addBreedingRecipe(common, forest).setHillAnt(false);
 	barbaric = new AntSpecies(0x382000, 0x6D3F00, "Barbaric",
-		"Eciton Burchelli").setMakesCommonAnt(false).addBreedingRecipe(common, jungle)
-		.setHillAnt(false);
+		"Eciton Burchelli").setMakesCommonAnt(false)
+		.addBreedingRecipe(common, jungle).setHillAnt(false);
 	plentiful = new AntSpecies(0x7F5842, 0xF9AD81, "Plentiful",
-		"Formica Copiosa").setMakesCommonAnt(false).addBreedingRecipe(common, plains)
+		"Formica Copiosa").setMakesCommonAnt(false)
+		.addBreedingRecipe(common, plains).setHillAnt(false);
+	cultivator = new AntSpecies(0x603A60, 0xA864A8, "Cultivator", "")
+		.setMakesCommonAnt(false).addBreedingRecipe(common, swamp)
 		.setHillAnt(false);
-	cultivator = new AntSpecies(0x603A60, 0xA864A8, "Cultivator", "").setMakesCommonAnt(false)
-		.addBreedingRecipe(common, swamp).setHillAnt(false);
-	mason = new AntSpecies(0x33CCFF, 0x666699, "Mason", "Formica Structor").setMakesCommonAnt(false).addBreedingRecipe(common, stone);
-	
+	mason = new AntSpecies(0x33CCFF, 0x666699, "Mason", "Formica Structor")
+		.setMakesCommonAnt(false).addBreedingRecipe(common, stone);
+
 	// Tier 3
 	scavenger = new AntSpecies(0x724539, 0xF69679, "Scavenger",
-		"Formicidae Lutum"){
+		"Formicidae Lutum") {
 
 	    @Override
 	    public void doFormicariumBehaviour(final Coordinate coord,
@@ -104,8 +107,9 @@ public class Ants {
 
 	}.addBreedingRecipe(x, desert)
 		.setBehaviourDesc("Collects nearby items")
-		.setHasBehaviour(true).setHillAnt(false).setMakesCommonAnt(false);
-	
+		.setHasBehaviour(true).setHillAnt(false)
+		.setMakesCommonAnt(false);
+
 	rancher = new AntSpecies(0x8C52100, 0xF7941D, "Rancher",
 		"Formicidae Progenus") {
 
@@ -128,8 +132,9 @@ public class Ants {
 	    }
 
 	}.addBreedingRecipe(x, plains).setBehaviourDesc("Breeds animals")
-		.setHasBehaviour(true).setHillAnt(false).setMakesCommonAnt(false);
-	
+		.setHasBehaviour(true).setHillAnt(false)
+		.setMakesCommonAnt(false);
+
 	hostile = new AntSpecies(0x381400, 0x7B2E00, "Hostile",
 		"Formicidae Infestus") {
 
@@ -145,7 +150,7 @@ public class Ants {
 	}.addBreedingRecipe(barbaric, desert)
 		.setBehaviourDesc("Damages hostile mobs").setHasBehaviour(true)
 		.setHillAnt(false).setMakesCommonAnt(false);
-	
+
 	slaughterer = new AntSpecies(0x8C5210, 0xF7941D, "Red",
 		"Formicidae Barbica") {
 
@@ -163,7 +168,7 @@ public class Ants {
 	}.addBreedingRecipe(barbaric, plains)
 		.setBehaviourDesc("Slaughters animals").setHasBehaviour(true)
 		.setHillAnt(false).setMakesCommonAnt(false);
-	
+
 	carpenter = new AntSpecies(0x253810, 0x4B7021, "Carpenter",
 		"Camponotus atriceps") {
 
@@ -219,7 +224,7 @@ public class Ants {
 	}.addBreedingRecipe(plentiful, plains).setHillAnt(false)
 		.setBehaviourDesc("Cuts down nearby leaves")
 		.setHasBehaviour(true).setMakesCommonAnt(false);
-	
+
 	harvester = new AntSpecies(0x332F00, 0x827B00, "Harvester",
 		"Formicidae Invicta") {
 
@@ -290,7 +295,8 @@ public class Ants {
 	    }
 	}.addBreedingRecipe(cultivator, plains)
 		.setBehaviourDesc("Plants crops and saplings")
-		.setHasBehaviour(true).setHillAnt(false).setMakesCommonAnt(false);
+		.setHasBehaviour(true).setHillAnt(false)
+		.setMakesCommonAnt(false);
 
 	sprouter = new AntSpecies(0x00202D, 0x005B7F, "Sprouter",
 		"Formicidae Germino") {
@@ -299,12 +305,9 @@ public class Ants {
 	    public void doFormicariumBehaviour(final Coordinate coord,
 		    final int strength, final TileEntityFormicarium tile) {
 		final int radius = 7;
-		if (InventoryUtil
-			.inventoryHas(
-				new ItemStack(Items.dye, 1, 15),
-				tile,
-				tile.slotsProduceRange.from,
-				tile.slotsProduceRange.to)) for (int x = coord.x
+		if (InventoryUtil.inventoryHas(new ItemStack(Items.dye, 1, 15),
+			tile, TileEntityFormicarium.slotsProduceRange.from,
+			TileEntityFormicarium.slotsProduceRange.to)) for (int x = coord.x
 			- radius; x <= coord.x + radius; x++)
 		    for (int y = coord.y - radius; y <= coord.y + radius; y++)
 			for (int z = coord.z - radius; z <= coord.z + radius; z++) {
@@ -318,14 +321,14 @@ public class Ants {
 					.decrStackSize(
 						new ItemStack(Items.dye, 1, 15),
 						tile,
-						tile.slotsProduceRange.from,
-						tile.slotsProduceRange.to);
+						TileEntityFormicarium.slotsProduceRange.from,
+						TileEntityFormicarium.slotsProduceRange.to);
 				if (!InventoryUtil
 					.inventoryHas(
 						new ItemStack(Items.dye, 1, 15),
 						tile,
-						tile.slotsProduceRange.from,
-						tile.slotsProduceRange.to)) return;
+						TileEntityFormicarium.slotsProduceRange.from,
+						TileEntityFormicarium.slotsProduceRange.to)) return;
 			    }
 			}
 	    }
@@ -335,11 +338,18 @@ public class Ants {
 		.setHillAnt(false).setMakesCommonAnt(false);
 
     }
+    
+    public static void init(){
+	Log.info("Init Ants");
+	for(AntSpecies species : AntSpecies.species){
+	    species.behaviourEnabled = ConfigUtil.config.getBoolean("behaviour."+species.speciesName+".enabled", Configuration.CATEGORY_GENERAL, true, "");
+	}
+    }
 
     private static ItemStack getBreedingResult(final AntSpecies ant1,
 	    final AntSpecies ant2) {
-	if(ant1 == ant2) return getItemStack(ant1,
-		    AntType.LARVA, ant1.fertility);
+	if (ant1 == ant2) return getItemStack(ant1, AntType.LARVA,
+		ant1.fertility);
 	for (final AntBreedingRecipe recipe : AntBreedingRecipe.globalBreedingRecipes)
 	    if (recipe.match(ant1, ant2)) return getItemStack(recipe.output,
 		    AntType.LARVA, Math.min(ant2.fertility, ant1.fertility));
@@ -348,7 +358,8 @@ public class Ants {
 
     public static ItemStack getBreedingResult(final ItemStack ant1,
 	    final ItemStack ant2) {
-	return getBreedingResult(getSpecies(ant1.getItemDamage()), getSpecies(ant2.getItemDamage()));
+	return getBreedingResult(getSpecies(ant1.getItemDamage()),
+		getSpecies(ant2.getItemDamage()));
     }
 
     public static ItemStack getItemStack(final AntSpecies s,
@@ -361,8 +372,8 @@ public class Ants {
     public static AntSpecies getSpecies(final int meta) {
 	return AntSpecies.species.get(meta / typeNames.length);
     }
-    
-    public static AntSpecies getSpecies(ItemStack stack){
+
+    public static AntSpecies getSpecies(final ItemStack stack) {
 	return getSpecies(stack.getItemDamage());
     }
 

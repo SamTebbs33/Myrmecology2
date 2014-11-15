@@ -19,7 +19,7 @@ public class Log {
 	log(Level.INFO, obj);
     }
 
-    public static void log(final org.apache.logging.log4j.Level level,
+    public static void log(final Level level,
 	    final Object obj) {
 	FMLLog.log(Reference.MOD_NAME, level, obj.toString(), "");
     }

@@ -1,7 +1,6 @@
 package com.vivadaylight3.myrmecology;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -67,7 +66,7 @@ public class GuiHandler implements IGuiHandler {
 		return new ContainerMyrmopaedia(new InventoryItem(
 			player.getHeldItem(), 1), player.inventory, world);
 	    case Reference.GUI_ID_BOOK:
-		return new ContainerMyrmecology(null){
+		return new ContainerMyrmecology(null) {
 		    @Override
 		    public boolean canInteractWith(final EntityPlayer p_75145_1_) {
 			return true;

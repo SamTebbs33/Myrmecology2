@@ -8,6 +8,7 @@ import com.vivadaylight3.myrmecology.init.ModRecipes;
 import com.vivadaylight3.myrmecology.init.ModTileEntities;
 import com.vivadaylight3.myrmecology.proxy.IProxy;
 import com.vivadaylight3.myrmecology.reference.Reference;
+import com.vivadaylight3.myrmecology.util.ConfigUtil;
 import com.vivadaylight3.myrmecology.util.Log;
 import com.vivadaylight3.myrmecology.util.Plantable;
 
@@ -28,6 +29,24 @@ public class Myrmecology {
 
     @SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
     public static IProxy proxy;
+    
+    /**
+     * Network handling, items and blocks
+     * 
+     * @param event
+     */
+    @EventHandler
+    public void preInit(final FMLPreInitializationEvent event) {
+	Log.info("Pre init");
+	ConfigUtil.init(event);
+	Ants.init();
+	ModBlocks.init();
+	ModItems.init();
+	ModTileEntities.init();
+	ModNet.init();
+	Plantable.init();
+	GameRegistry.registerWorldGenerator(new WorldGenHandler(), 10);
+    }
 
     /**
      * GUIs, tile entities, recipes and event handlers
@@ -49,27 +68,6 @@ public class Myrmecology {
     @EventHandler
     public void postInit(final FMLPostInitializationEvent event) {
 	Log.info("Post init");
-    }
-
-    /**
-     * Network handling, items and blocks
-     * 
-     * @param event
-     */
-    @EventHandler
-    public void preInit(final FMLPreInitializationEvent event) {
-	Log.info("Pre init");
-	/*
-	 * tab = new CreativeTabs(Reference.MOD_ID) {
-	 * @Override public Item getTabIconItem() { // TODO Auto-generated
-	 * method stub return ModItems.ant; } };
-	 */
-	ModBlocks.init();
-	ModItems.init();
-	ModTileEntities.init();
-	ModNet.init();
-	Plantable.init();
-	GameRegistry.registerWorldGenerator(new WorldGenHandler(), 10);
     }
 
 }

@@ -5,6 +5,7 @@ import com.vivadaylight3.myrmecology.item.ItemExtractor;
 import com.vivadaylight3.myrmecology.item.ItemMyrmecology;
 import com.vivadaylight3.myrmecology.item.ItemMyrmecologyBook;
 import com.vivadaylight3.myrmecology.item.ItemMyrmopaedia;
+import com.vivadaylight3.myrmecology.util.Log;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -12,13 +13,15 @@ public class ModItems {
 
     public static ItemMyrmecology ant = new ItemAnt(),
 	    extractor = new ItemExtractor(),
-	    myrmopaedia = new ItemMyrmopaedia(), book = new ItemMyrmecologyBook();
+	    myrmopaedia = new ItemMyrmopaedia(),
+	    book = new ItemMyrmecologyBook();
 
     public static void addItem(final ItemMyrmecology item) {
 	GameRegistry.registerItem(item, item.name);
     }
 
     public static void init() {
+	Log.info("Init ModItems");
 	addItem(extractor);
 	addItem(myrmopaedia);
 	addItem(ant);

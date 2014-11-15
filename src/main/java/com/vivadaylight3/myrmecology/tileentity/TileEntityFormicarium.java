@@ -88,6 +88,7 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
 	for (final int slot : slotsWorkers)
 	    if (inventory[slot] != null) {
 		final AntSpecies species = Ants.getSpecies(inventory[slot]);
+		if(!species.behaviourEnabled) continue;
 		final Integer current = speciesMap.get(species);
 		if (current != null) speciesMap.put(species, current
 			+ inventory[slot].stackSize);

@@ -1,5 +1,7 @@
 package com.vivadaylight3.myrmecology.init;
 
+import com.vivadaylight3.myrmecology.util.Log;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -8,6 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModRecipes {
 
     public static void init() {
+	Log.info("Init ModRecipes");
 	// Items
 	GameRegistry.addRecipe(new ItemStack(ModItems.myrmopaedia), "ggg",
 		"rer", "qqq", 'g', new ItemStack(Blocks.glass_pane), 'r',
@@ -17,7 +20,8 @@ public class ModRecipes {
 		" di", 's', new ItemStack(Items.iron_shovel), 'i',
 		new ItemStack(Items.iron_ingot), 'd', new ItemStack(Items.dye,
 			1, 2));
-	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.book), new ItemStack(Items.book), new ItemStack(Items.dye, 1, 4));
+	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.book),
+		new ItemStack(Items.book), new ItemStack(Items.dye, 1, 4));
 	// Blocks
 	GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt, 2, 2),
 		new ItemStack(Items.dye, 1, 15),

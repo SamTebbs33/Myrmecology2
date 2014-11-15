@@ -7,8 +7,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import com.vivadaylight3.myrmecology.ant.Ants;
-import com.vivadaylight3.myrmecology.ant.Ants.AntType;
-import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityBreedingChamber;
 
 public class ContainerBreedingChamber extends ContainerMyrmecology {
@@ -34,7 +32,7 @@ public class ContainerBreedingChamber extends ContainerMyrmecology {
 		c++;
 	    }
     }
-    
+
     @Override
     public ItemStack transferStackInSlot(final EntityPlayer player,
 	    final int slotID) {

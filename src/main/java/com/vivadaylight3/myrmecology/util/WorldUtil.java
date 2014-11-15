@@ -10,12 +10,18 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class WorldUtil {
+
+    public static List<Entity> getPlayers(final Coordinate coord,
+	    final double radius) {
+	return getPlayers(coord, radius, radius, radius);
+    }
 
     public static List<Entity> getSpawnedItems(final Coordinate coord,
 	    final double radius) {
@@ -30,6 +36,11 @@ public class WorldUtil {
     public static List<Entity> getAnimals(final Coordinate coord,
 	    final double radius) {
 	return getAnimals(coord, radius, radius, radius);
+    }
+
+    public static List<Entity> getPlayers(final Coordinate coord,
+	    final double xRadius, final double yRadius, final double zRadius) {
+	return getEntities(coord, xRadius, yRadius, zRadius, EntityPlayer.class);
     }
 
     public static List<Entity> getSpawnedItems(final Coordinate coord,

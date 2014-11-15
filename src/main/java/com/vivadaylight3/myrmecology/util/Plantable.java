@@ -33,6 +33,7 @@ public class Plantable {
     }
 
     public static void init() {
+	Log.info("Init Plantable");
 	new Plantable(Items.wheat_seeds, Blocks.wheat);
 	new Plantable(Items.reeds, Blocks.reeds);
 	new Plantable(Items.melon_seeds, Blocks.melon_stem);
