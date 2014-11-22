@@ -37,10 +37,8 @@ public class TileEntityBreedingChamber extends TileEntityMyrmecology {
     public boolean canInsertItem(final int slot, final ItemStack stack,
 	    final int side) {
 	if (slot < 2 && stack.getItem() instanceof ItemAnt) {
-	    if (slot == SLOT_QUEEN
-		    && Ants.getType(stack) == AntType.QUEEN.metadata) return true;
-	    if (slot == SLOT_DRONE
-		    && Ants.getType(stack) == AntType.DRONE.metadata) return true;
+	    if (slot == SLOT_QUEEN && Ants.getType(stack) == AntType.QUEEN) return true;
+	    if (slot == SLOT_DRONE && Ants.getType(stack) == AntType.DRONE) return true;
 	}
 	return false;
     }

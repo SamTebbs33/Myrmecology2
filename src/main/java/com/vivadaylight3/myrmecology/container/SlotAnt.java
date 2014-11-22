@@ -22,7 +22,7 @@ public class SlotAnt extends Slot {
     public boolean isItemValid(final ItemStack stack) {
 	// TODO Auto-generated method stub
 	if (stack.getItem() instanceof ItemAnt) for (final Ants.AntType type : types)
-	    if (type.metadata == Ants.getType(stack)) return true;
+	    if (type == Ants.getType(stack)) return true;
 	return false;
     }
 

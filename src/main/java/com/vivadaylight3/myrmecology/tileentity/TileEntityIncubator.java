@@ -6,12 +6,12 @@ import net.minecraft.util.StatCollector;
 
 import com.vivadaylight3.myrmecology.ant.AntSpecies;
 import com.vivadaylight3.myrmecology.ant.Ants;
+import com.vivadaylight3.myrmecology.ant.Ants.AntType;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology;
 import com.vivadaylight3.myrmecology.block.BlockMyrmecology.BlockSide;
 import com.vivadaylight3.myrmecology.event.AntIncubationEvent;
 import com.vivadaylight3.myrmecology.handler.MEventHandler;
 import com.vivadaylight3.myrmecology.init.ModBlocks;
-import com.vivadaylight3.myrmecology.init.ModItems;
 import com.vivadaylight3.myrmecology.item.ItemAnt;
 
 import cpw.mods.fml.relauncher.Side;
@@ -38,7 +38,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
     public boolean canInsertItem(final int slot, final ItemStack stack,
 	    final int side) {
 	return slot == 0 && stack.getItem() instanceof ItemAnt
-		&& Ants.getType(stack) == Ants.AntType.LARVA.metadata;
+		&& Ants.getType(stack) == Ants.AntType.LARVA;
     }
 
     @Override
@@ -55,8 +55,9 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
     }
 
     private ItemStack getProduct(final ItemStack larva) {
-	return new ItemStack(ModItems.ant, 1, AntSpecies.species.indexOf(Ants
-		.getSpecies(larva)) * Ants.typeNames.length + productType);
+	final AntSpecies larvaSpecies = Ants.getSpecies(larva);
+	return Ants
+		.getItemStack(larvaSpecies, AntType.values()[productType], 1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -67,7 +68,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
     @Override
     public boolean isItemValidForSlot(final int slot, final ItemStack stack) {
 	if (stack.getItem() instanceof ItemAnt) {
-	    if (slot == 0) return Ants.getType(stack) == Ants.AntType.LARVA.metadata;
+	    if (slot == 0) return Ants.getType(stack) == Ants.AntType.LARVA;
 	    else return true;
 	} else return false;
     }
@@ -95,7 +96,7 @@ public class TileEntityIncubator extends TileEntityMyrmecology {
 	if (larva != null) {
 	    if (worldObj
 		    .isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
-		if (Ants.getType(larva) == Ants.AntType.LARVA.metadata) {
+		if (Ants.getType(larva) == Ants.AntType.LARVA) {
 		    if (meta == larva.getItemDamage()) {
 			if (inventoryCanHold(getProduct(larva))) {
 			    progress++;

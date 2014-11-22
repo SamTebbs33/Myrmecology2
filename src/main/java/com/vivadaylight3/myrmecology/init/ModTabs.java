@@ -32,7 +32,7 @@ public class ModTabs {
 	@Override
 	public Item getTabIconItem() {
 	    // TODO Auto-generated method stub
-	    return ModItems.ant;
+	    return ModItems.antForest;
 	}
 
 	@Override

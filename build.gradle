@@ -17,8 +17,8 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.1"
-group= "com.vivadaylight3.myrmecology" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "1.7.10-0.2.0a"
+group = "com.vivadaylight3.myrmecology" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Myrmecology"
 
 sourceSets.main{
@@ -34,6 +34,11 @@ sourceSets.main{
 minecraft {
     version = "1.7.10-10.13.2.1230"
     runDir = "eclipse"
+    
+    replace "@VERSION@", project.version
+    replace "@UPDATE_URL@", "https://raw.githubusercontent.com/VivaDaylight3/Myrmecology2/master/latestUpdate.txt"
+    replace "@USER_UPDATE_URL@", "https://github.com/VivaDaylight3/Myrmecology2/releases"
+    replaceIn "Reference.java"
 }
 
 dependencies {
@@ -71,3 +76,64 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+configurations{
+	deployerJars
+}
+
+dependencies{
+	deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
+}
+
+/*
+uploadArchives{
+	repositories{
+		mavenDeployer{
+			configuration = configurations.deployerJars
+			
+			repository(url: "http://files.minecraftforge.net/maven/manage/upload"){
+				authentication(userName: "AbrarSyed", password: project.forgeMavenPass)
+			}
+			
+			pom{
+				groupId = project.group
+				version = project.version
+				artifactId = project.archiveBaseName
+				project{
+					name project.archiveBaseName
+					packaging 'jar'
+					description 'Myrmecology'
+					url 'https://github.com/VivaDaylight3/Myrmecology2'
+					
+					scm{
+						url 'https://github.com/VivaDaylight3/Myrmecology2'
+						connection 'scm:git:git://github.com/Vivadaylight3/Myrmecology2.git'
+						developerConnection 'scm:git:git@github.com:Vivadaylight3/Myrmecology2.git'
+					}
+					
+					issueManagement{
+						system 'github'
+						url 'https://github.com/VivaDaylight3/Myrmecology2/issues'
+					}
+					
+					licenses{
+						license{
+							name 'GNU General Public License'
+							url 'https://github.com/VivaDaylight3/Myrmecology2/blob/master/LICENSE'
+							distribution 'repo'
+						}
+					}
+					
+					developers{
+						developer{
+							id 'VivaDaylight3'
+							name 'VivaDaylight3'
+							roles {role 'developer'}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+*/

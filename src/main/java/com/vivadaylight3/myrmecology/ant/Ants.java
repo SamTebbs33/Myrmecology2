@@ -1,5 +1,6 @@
 package com.vivadaylight3.myrmecology.ant;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -20,7 +21,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 import akka.japi.Pair;
 
-import com.vivadaylight3.myrmecology.init.ModItems;
+import com.vivadaylight3.myrmecology.item.ItemAnt;
 import com.vivadaylight3.myrmecology.tileentity.TileEntityFormicarium;
 import com.vivadaylight3.myrmecology.util.ConfigUtil;
 import com.vivadaylight3.myrmecology.util.Coordinate;
@@ -33,13 +34,15 @@ import com.vivadaylight3.myrmecology.util.WorldUtil;
 public class Ants {
 
     public enum AntType {
-	DRONE(1), LARVA(0), QUEEN(3), WORKER(2);
+	LARVA(0), DRONE(1), WORKER(2), QUEEN(3);
 	public int metadata;
 
 	AntType(final int val) {
 	    metadata = val;
 	}
     }
+
+    public static HashMap<AntSpecies, ItemAnt> antMap = new HashMap<AntSpecies, ItemAnt>();
 
     public static DamageSource antDamageSource = new DamageSource("Ants");
 
@@ -363,30 +366,31 @@ public class Ants {
 
     public static ItemStack getBreedingResult(final ItemStack ant1,
 	    final ItemStack ant2) {
-	return getBreedingResult(getSpecies(ant1.getItemDamage()),
-		getSpecies(ant2.getItemDamage()));
+	return getBreedingResult(getSpecies(ant1), getSpecies(ant2));
     }
 
     public static ItemStack getItemStack(final AntSpecies s,
 	    final AntType type, final int quantity) {
-	return new ItemStack(ModItems.ant, quantity,
-		AntSpecies.species.indexOf(s) * typeNames.length
-			+ type.metadata);
+	return new ItemStack(getItemAnt(s), quantity, type.metadata);
     }
 
-    public static AntSpecies getSpecies(final int meta) {
-	return AntSpecies.species.get(meta / typeNames.length);
+    public static ItemAnt getItemAnt(final AntSpecies species) {
+	return Ants.antMap.get(species);
+    }
+
+    public static AntSpecies getSpecies(final ItemAnt item) {
+	return item.species;
     }
 
     public static AntSpecies getSpecies(final ItemStack stack) {
-	return getSpecies(stack.getItemDamage());
+	return getSpecies((ItemAnt) stack.getItem());
     }
 
-    public static int getType(final int meta) {
-	return meta % typeNames.length;
+    public static AntType getType(final int meta) {
+	return AntType.values()[meta];
     }
 
-    public static int getType(final ItemStack stack) {
+    public static AntType getType(final ItemStack stack) {
 	return getType(stack.getItemDamage());
     }
 

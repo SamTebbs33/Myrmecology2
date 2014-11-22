@@ -51,7 +51,7 @@ public class TileEntityFormicarium extends TileEntityMyrmecology {
 	    final int side) {
 	for (final Integer i : slotsWorkers)
 	    if (slot == i) if (stack.getItem() instanceof ItemAnt) if (Ants
-		    .getType(stack) == AntType.WORKER.metadata) return true;
+		    .getType(stack) == AntType.WORKER) return true;
 	for (final Integer i : slotsSymbiosis)
 	    if (slot == i) for (final Item item : itemsSymbiosis)
 		if (item == stack.getItem()) return true;
