@@ -23,6 +23,7 @@ species.myrmecology:Desert=Desert
 species.myrmecology:Swamp=Swamp 
 species.myrmecology:Plains=Field 
 species.myrmecology:Stone=Amber 
+species.myrmecology:Jungle=Army 
 species.myrmecology:Common=Common  
 species.myrmecology:Mound=Mound 
 species.myrmecology:Barbaric=Barbaric 
@@ -41,6 +42,10 @@ species.myrmecology:Red=Red
 // Ant hills
 tile.myrmecology:antHillForest.name=Black Ant Hill
 tile.myrmecology:antHillDesert.name=Desert Ant Hill
+tile.myrmecology:antHillSwamp.name=Swamp Ant Hill
+tile.myrmecology:antHillPlains.name=Field Ant Hill
+tile.myrmecology:antHillStone.name=Amber Ant Hill
+tile.myrmecology:antHillJungle.name=Army Ant Hill
  
 // Creative tabs
 itemGroup.myrmecology=Myrmecology

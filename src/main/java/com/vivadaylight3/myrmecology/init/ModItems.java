@@ -18,11 +18,14 @@ public class ModItems {
 	    antPlains = new ItemAnt.Plains(Ants.plains),
 	    antStone = new ItemAnt.Stone(Ants.stone),
 	    antJungle = new ItemAnt.Jungle(Ants.jungle),
-	    antCommon = new ItemAnt.Common(Ants.common), antX = new ItemAnt.X(
+	    antCommon = new ItemAnt.Common(Ants.common), 
+	    // Tier 2
+	    antX = new ItemAnt.X(
 		    Ants.x), antBarbaric = new ItemAnt.Barbaric(Ants.barbaric),
 	    antPlentiful = new ItemAnt.Plentiful(Ants.plentiful),
 	    antCultivator = new ItemAnt.Cultivator(Ants.cultivator),
 	    antMason = new ItemAnt.Mason(Ants.mason),
+	    // Tier 3
 	    antCarpenter = new ItemAnt.Carpenter(Ants.carpenter),
 	    antLeafcutter = new ItemAnt.Leafcutter(Ants.leafcutter),
 	    antScavenger = new ItemAnt.Scavenger(Ants.scavenger),
