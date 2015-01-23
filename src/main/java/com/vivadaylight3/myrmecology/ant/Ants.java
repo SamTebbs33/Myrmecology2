@@ -49,7 +49,7 @@ public class Ants {
     public static AntSpecies forest, desert, swamp, plains, stone, jungle,
 	    common, x, barbaric, plentiful, cultivator, mason, carpenter,
 	    leafcutter, scavenger, planter, hostile, sprouter, harvester,
-	    rancher, slaughterer;
+	    rancher, slaughterer, dredger;
 
     public static final String[] typeNames = { "Larva", "Drone", "Worker",
 	    "Queen" };
@@ -339,6 +339,18 @@ public class Ants {
 	}.addBreedingRecipe(cultivator, forest)
 		.setBehaviourDesc("Fertilises crops").setHasBehaviour(true)
 		.setHillAnt(false).setMakesCommonAnt(false);
+	
+	dredger = new AntSpecies(0x63584C, 0xC7B299, "Dredger", "Formicidae Dred"){
+	    
+	    int lastX, lastY;
+
+	    @Override
+	    public void doFormicariumBehaviour(Coordinate coord, int strength,
+		    TileEntityFormicarium tile) {
+		for(int x = lastX; x < )
+	    }
+	    
+	};
 
     }
 
